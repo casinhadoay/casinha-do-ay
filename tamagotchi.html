@@ -1,0 +1,345 @@
+<!DOCTYPE html>
+<html lang="pt-BR" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mini Tamagotchi Web 👾🌸</title>
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        sakura: {
+                            50: '#fff5f7',
+                            100: '#ffeef2',
+                            200: '#ffdbe4',
+                            300: '#ffb7ca',
+                            400: '#ff85a3',
+                            500: '#ff547d',
+                            600: '#eb2c5b',
+                            700: '#c71946',
+                            800: '#a5173e',
+                            900: '#8b183a',
+                            card: 'rgba(255, 255, 255, 0.88)',
+                        }
+                    },
+                    fontFamily: {
+                        sans: ['Comfortaa', 'Quicksand', 'sans-serif'],
+                        mono: ['Fira Code', 'monospace']
+                    }
+                }
+            }
+        }
+    </script>
+    <!-- FontAwesome Icons & Google Fonts -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Comfortaa:wght@400;600;700&family=Quicksand:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+    <style>
+        /* O GIF animado de fundo */
+        body {
+            font-family: 'Quicksand', sans-serif;
+            background: linear-gradient(rgba(0, 0, 0, 0.35), rgba(0, 0, 0, 0.35)), url('download.gif');
+            background-size: cover;
+            background-position: center;
+            background-attachment: fixed;
+            background-repeat: no-repeat;
+            color: #4a343a;
+            overflow-x: hidden;
+            position: relative;
+        }
+
+        /* A barra rosa do topo com a imagem original */
+        .glass-nav {
+            background: linear-gradient(rgba(255, 227, 232, 0.88), rgba(255, 227, 232, 0.88)), url('7 Sem Título_20261108005507.png');
+            background-size: cover;
+            background-position: center;
+            backdrop-filter: blur(14px);
+            -webkit-backdrop-filter: blur(14px);
+            border-bottom: 1px solid rgba(255, 183, 202, 0.4);
+        }
+
+        /* Efeito Glassmorphism para os Cards */
+        .glass-card {
+            background: rgba(255, 255, 255, 0.88);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            border: 1px solid rgba(255, 183, 202, 0.4);
+            box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.15);
+        }
+
+        /* Animações do Bichinho */
+        @keyframes floatPet {
+            0%, 100% { transform: translateY(0px); }
+            50% { transform: translateY(-8px); }
+        }
+        .animate-pet {
+            animation: floatPet 2.5s ease-in-out infinite;
+        }
+
+        /* Custom Scrollbar */
+        ::-webkit-scrollbar {
+            width: 6px;
+        }
+        ::-webkit-scrollbar-track {
+            background: rgba(255, 227, 232, 0.5);
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #ff85a3;
+            border-radius: 999px;
+        }
+    </style>
+</head>
+<body class="min-h-screen flex flex-col justify-between selection:bg-sakura-300 selection:text-sakura-900">
+
+    <!-- Header Navigation -->
+    <header class="fixed top-0 left-0 w-full z-50 glass-nav transition-all duration-300">
+        <div class="max-w-6xl mx-auto px-4 sm:px-6 h-20 flex items-center justify-between relative z-10">
+            <!-- Logo voltando para a página principal -->
+            <a href="index.html" class="flex items-center gap-3 group">
+                <div class="w-11 h-11 rounded-2xl bg-gradient-to-tr from-sakura-400 to-sakura-300 flex items-center justify-center text-white text-xl shadow-md group-hover:rotate-12 transition-transform duration-300">
+                    👾
+                </div>
+                <div class="flex flex-col">
+                    <span class="font-['Comfortaa'] font-bold text-lg sm:text-xl text-sakura-900 tracking-tight">
+                        Tamagotchi <span class="text-sakura-500">Web</span>
+                    </span>
+                    <span class="text-[10px] text-sakura-700 font-mono">- bichinho virtual -</span>
+                </div>
+            </a>
+
+            <!-- Menu -->
+            <nav class="flex items-center gap-4 font-semibold text-sm text-sakura-900">
+                <a href="index.html" class="px-4 py-2 rounded-full glass-card hover:bg-white transition-all flex items-center gap-2">
+                    <i class="fa-solid fa-house text-sakura-500"></i> Voltar ao Início
+                </a>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Content Wrapper -->
+    <main class="relative z-10 pt-32 pb-16 flex-grow max-w-xl mx-auto px-4 sm:px-6 w-full">
+        
+        <!-- Header da Seção -->
+        <div class="text-center max-w-xl mx-auto mb-8 space-y-2">
+            <span class="text-xs font-mono uppercase tracking-widest text-sakura-200 font-bold drop-shadow">// MINI JOGO</span>
+            <h1 class="text-3xl sm:text-4xl font-['Comfortaa'] font-bold text-white drop-shadow">Seu Bichinho Virtual 🐱</h1>
+            <p class="text-sm text-white/95 drop-shadow">Cuide bem do seu Tamagotchi dando comida, carinho e descansando!</p>
+        </div>
+
+        <!-- Card do Tamagotchi (Dispositivo Tamagotchi) -->
+        <div class="glass-card rounded-3xl p-6 sm:p-8 space-y-6 shadow-2xl relative overflow-hidden text-center border-2 border-sakura-300">
+            
+            <!-- Ecrã do Tamagotchi -->
+            <div class="p-6 rounded-3xl bg-gradient-to-b from-pink-50 to-sakura-100 border-4 border-sakura-300 shadow-inner space-y-4 relative">
+                
+                <!-- Nome e Estado -->
+                <div class="flex justify-between items-center text-xs font-mono font-bold text-sakura-800">
+                    <span id="pet-name">Tama-Neko 🌸</span>
+                    <span id="pet-status-badge" class="px-2 py-0.5 rounded-full bg-white/80 text-sakura-600 border border-sakura-200">Feliz ✨</span>
+                </div>
+
+                <!-- Avatar Animado do Bichinho -->
+                <div class="py-6 flex items-center justify-center">
+                    <div id="pet-avatar" class="text-7xl sm:text-8xl animate-pet transition-all duration-300 select-none">
+                        🐱
+                    </div>
+                </div>
+
+                <!-- Mensagem do Bichinho -->
+                <div class="p-2.5 rounded-xl bg-white/90 border border-sakura-200 text-xs text-sakura-900 font-medium">
+                    <p id="pet-speech">"Miau! Estou pronto para brincar!" 🍡</p>
+                </div>
+            </div>
+
+            <!-- Barras de Estado -->
+            <div class="space-y-3 text-left font-semibold text-xs text-sakura-900">
+                
+                <!-- Fome -->
+                <div class="space-y-1">
+                    <div class="flex justify-between">
+                        <span>🍗 Alimentado:</span>
+                        <span id="hunger-val" class="font-mono">100%</span>
+                    </div>
+                    <div class="w-full bg-sakura-200/70 h-3 rounded-full overflow-hidden">
+                        <div id="hunger-bar" class="bg-sakura-500 h-full rounded-full transition-all duration-500" style="width: 100%;"></div>
+                    </div>
+                </div>
+
+                <!-- Felicidade -->
+                <div class="space-y-1">
+                    <div class="flex justify-between">
+                        <span>🎾 Felicidade:</span>
+                        <span id="happiness-val" class="font-mono">100%</span>
+                    </div>
+                    <div class="w-full bg-sakura-200/70 h-3 rounded-full overflow-hidden">
+                        <div id="happiness-bar" class="bg-sakura-400 h-full rounded-full transition-all duration-500" style="width: 100%;"></div>
+                    </div>
+                </div>
+
+                <!-- Energia -->
+                <div class="space-y-1">
+                    <div class="flex justify-between">
+                        <span>⚡ Energia:</span>
+                        <span id="energy-val" class="font-mono">100%</span>
+                    </div>
+                    <div class="w-full bg-sakura-200/70 h-3 rounded-full overflow-hidden">
+                        <div id="energy-bar" class="bg-pink-400 h-full rounded-full transition-all duration-500" style="width: 100%;"></div>
+                    </div>
+                </div>
+
+            </div>
+
+            <!-- Botões de Ações -->
+            <div class="grid grid-cols-2 sm:grid-cols-4 gap-2.5 pt-2">
+                <button onclick="feedPet()" class="px-3 py-3 rounded-2xl bg-sakura-500 text-white font-bold text-xs shadow hover:bg-sakura-600 transition-all flex flex-col items-center gap-1 cursor-pointer">
+                    <span class="text-lg">🐟</span> Alimentar
+                </button>
+                <button onclick="playPet()" class="px-3 py-3 rounded-2xl bg-sakura-500 text-white font-bold text-xs shadow hover:bg-sakura-600 transition-all flex flex-col items-center gap-1 cursor-pointer">
+                    <span class="text-lg">🧶</span> Brincar
+                </button>
+                <button onclick="sleepPet()" class="px-3 py-3 rounded-2xl bg-sakura-500 text-white font-bold text-xs shadow hover:bg-sakura-600 transition-all flex flex-col items-center gap-1 cursor-pointer">
+                    <span class="text-lg">😴</span> Dormir
+                </button>
+                <button onclick="resetPet()" class="px-3 py-3 rounded-2xl glass-card text-sakura-900 font-bold text-xs hover:bg-white transition-all flex flex-col items-center gap-1 cursor-pointer">
+                    <span class="text-lg">🔄</span> Reiniciar
+                </button>
+            </div>
+
+        </div>
+
+    </main>
+
+    <!-- Footer -->
+    <footer class="relative z-10 border-t border-white/20 py-8 text-center text-xs text-white/90 font-medium drop-shadow">
+        <p>Feito com 🌸 e carinho por Ayzin • Casinha do Ayzin</p>
+    </footer>
+
+    <!-- Lógica JS do Tamagotchi -->
+    <script>
+        // Estado do Tamagotchi guardado em localStorage
+        let petState = JSON.parse(localStorage.getItem('tamagotchi_state')) || {
+            hunger: 100,
+            happiness: 100,
+            energy: 100,
+            isSleeping: false
+        };
+
+        const avatar = document.getElementById('pet-avatar');
+        const speech = document.getElementById('pet-speech');
+        const badge = document.getElementById('pet-status-badge');
+
+        const hungerBar = document.getElementById('hunger-bar');
+        const happinessBar = document.getElementById('happiness-bar');
+        const energyBar = document.getElementById('energy-bar');
+
+        const hungerVal = document.getElementById('hunger-val');
+        const happinessVal = document.getElementById('happiness-val');
+        const energyVal = document.getElementById('energy-val');
+
+        function updateUI() {
+            // Garante limites 0-100
+            petState.hunger = Math.max(0, Math.min(100, petState.hunger));
+            petState.happiness = Math.max(0, Math.min(100, petState.happiness));
+            petState.energy = Math.max(0, Math.min(100, petState.energy));
+
+            // Atualiza barras
+            hungerBar.style.width = petState.hunger + '%';
+            happinessBar.style.width = petState.happiness + '%';
+            energyBar.style.width = petState.energy + '%';
+
+            hungerVal.textContent = Math.round(petState.hunger) + '%';
+            happinessVal.textContent = Math.round(petState.happiness) + '%';
+            energyVal.textContent = Math.round(petState.energy) + '%';
+
+            // Atualiza Aparência e Mensagem
+            if (petState.isSleeping) {
+                avatar.textContent = '💤';
+                badge.textContent = 'A Dormir 🌙';
+                speech.textContent = '"Zzz... Zzz... descansando!"';
+            } else if (petState.hunger < 30) {
+                avatar.textContent = '😿';
+                badge.textContent = 'Com Fome 🐟';
+                speech.textContent = '"Preciso de comidinha urgente! Miau..."';
+            } else if (petState.happiness < 30) {
+                avatar.textContent = '😾';
+                badge.textContent = 'Triste 🧶';
+                speech.textContent = '"Estou aborrecido, vamos brincar?"';
+            } else if (petState.energy < 30) {
+                avatar.textContent = '🙀';
+                badge.textContent = 'Cansado 😴';
+                speech.textContent = '"Estou com muito sono..."';
+            } else {
+                avatar.textContent = '🐱';
+                badge.textContent = 'Feliz ✨';
+                speech.textContent = '"Miau! Estou super feliz!" 🍡';
+            }
+
+            localStorage.setItem('tamagotchi_state', JSON.stringify(petState));
+        }
+
+        function feedPet() {
+            if (petState.isSleeping) {
+                speech.textContent = '"Zzz... ele está a dormir agora!"';
+                return;
+            }
+            petState.hunger += 25;
+            petState.happiness += 5;
+            avatar.textContent = '😸';
+            speech.textContent = '"Nhame nhame! Delícia de peixinho!" 🐟';
+            updateUI();
+        }
+
+        function playPet() {
+            if (petState.isSleeping) {
+                speech.textContent = '"Zzz... ele está a dormir agora!"';
+                return;
+            }
+            if (petState.energy < 20) {
+                speech.textContent = '"Demasiado cansado para brincar..." 😴';
+                return;
+            }
+            petState.happiness += 25;
+            petState.hunger -= 10;
+            petState.energy -= 15;
+            avatar.textContent = '😻';
+            speech.textContent = '"Que divertido! Adoro brincar contigo!" 🧶';
+            updateUI();
+        }
+
+        function sleepPet() {
+            petState.isSleeping = !petState.isSleeping;
+            if (petState.isSleeping) {
+                petState.energy += 30;
+            }
+            updateUI();
+        }
+
+        function resetPet() {
+            petState = { hunger: 100, happiness: 100, energy: 100, isSleeping: false };
+            speech.textContent = '"Olá! Sou o teu novo bichinho!" 🌸';
+            updateUI();
+        }
+
+        // Loop de redução com o tempo (a cada 4 segundos diminui um pouco)
+        setInterval(() => {
+            if (petState.isSleeping) {
+                petState.energy += 10;
+                if (petState.energy >= 100) petState.isSleeping = false;
+            } else {
+                petState.hunger -= 3;
+                petState.happiness -= 2;
+                petState.energy -= 1;
+            }
+            updateUI();
+        }, 4000);
+
+        // Inicializa a UI
+        updateUI();
+    </script>
+</body>
+</html>
