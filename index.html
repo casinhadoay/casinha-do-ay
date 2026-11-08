@@ -107,16 +107,13 @@
                 </div>
             </a>
 
-            <!-- Desktop Menu -->
+            <!-- Desktop Menu (Sem o botão Amigos) -->
             <nav class="hidden md:flex items-center gap-6 font-semibold text-sm text-sakura-900">
                 <a href="#inicio" class="hover:text-sakura-500 transition-colors">Início</a>
                 <a href="#projetos" class="hover:text-sakura-500 transition-colors">Meus Projetos</a>
-                <a href="amigos.html" class="hover:text-sakura-500 transition-colors flex items-center gap-1">
-                    <span>Amigos</span> ✨
-                </a>
                 <a href="#sobre" class="hover:text-sakura-500 transition-colors">Sobre Mim</a>
                 <a href="#contato" class="px-4 py-2 rounded-full bg-sakura-500 text-white hover:bg-sakura-600 shadow-sm hover:shadow-md transition-all">
-                    Contato ✨
+                    Contato
                 </a>
             </nav>
 
@@ -126,13 +123,12 @@
             </button>
         </div>
 
-        <!-- Mobile Menu Dropdown -->
+        <!-- Mobile Menu Dropdown (Sem o botão Amigos) -->
         <div id="mobile-menu" class="hidden md:hidden glass-card mx-4 my-2 rounded-2xl p-4 space-y-3 font-semibold text-center text-sakura-900 shadow-xl border border-sakura-300">
             <a href="#inicio" class="mobile-link block py-2 border-b border-sakura-200/50 hover:text-sakura-500">Início</a>
             <a href="#projetos" class="mobile-link block py-2 border-b border-sakura-200/50 hover:text-sakura-500">Meus Projetos</a>
-            <a href="amigos.html" class="mobile-link block py-2 border-b border-sakura-200/50 text-sakura-600 font-bold">Cantinho dos Amigos ✨</a>
             <a href="#sobre" class="mobile-link block py-2 border-b border-sakura-200/50 hover:text-sakura-500">Sobre Mim</a>
-            <a href="#contato" class="mobile-link block py-2 text-sakura-500 font-bold">Contato ✨</a>
+            <a href="#contato" class="mobile-link block py-2 text-sakura-500 font-bold">Contato</a>
         </div>
     </header>
 
@@ -567,14 +563,12 @@
                 mobileMenu.classList.toggle('hidden');
             });
 
-            // Fecha o menu ao clicar num link
             mobileLinks.forEach(link => {
                 link.addEventListener('click', () => {
                     mobileMenu.classList.add('hidden');
                 });
             });
 
-            // Fecha o menu ao clicar fora dele
             document.addEventListener('click', (e) => {
                 if (!mobileMenu.contains(e.target) && !mobileBtn.contains(e.target)) {
                     mobileMenu.classList.add('hidden');
@@ -601,7 +595,6 @@
             modalDesc.textContent = project.description;
             modalLiveLink.href = project.link;
 
-            // Se for link externo abre em nova aba, se for relativo abre na mesma aba
             if (project.link.startsWith('http')) {
                 modalLiveLink.setAttribute('target', '_blank');
             } else {
