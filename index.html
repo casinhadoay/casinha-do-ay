@@ -91,7 +91,7 @@
 </head>
 <body class="min-h-screen flex flex-col justify-between selection:bg-sakura-300 selection:text-sakura-900">
 
-    <!-- Header Navigation (Barra Rosa com a imagem 7 Sem Título_20261108005507.png) -->
+    <!-- Header Navigation -->
     <header class="fixed top-0 left-0 w-full z-50 glass-nav transition-all duration-300">
         <div class="max-w-6xl mx-auto px-4 sm:px-6 h-20 flex items-center justify-between relative z-10">
             <!-- Logo -->
@@ -213,7 +213,7 @@
             <!-- Projects Grid -->
             <div id="projects-grid" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
                 
-                <!-- Card 1 -->
+                <!-- Card 1: Gerador de Kaomoji Neko (Interligado para kaomoji.html) -->
                 <div class="project-card glass-card rounded-3xl overflow-hidden flex flex-col group hover:-translate-y-1.5 transition-all duration-300" data-category="hobby">
                     <div class="relative overflow-hidden h-44 bg-sakura-100">
                         <img src="https://placehold.co/600x400/ffdbe4/8b183a?text=Kaomoji+Neko+🐾" alt="Gerador de Kaomoji Neko" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500">
@@ -236,7 +236,7 @@
                                 <button onclick="openModal(1)" class="text-sakura-700 hover:text-sakura-500 transition-colors flex items-center gap-1 cursor-pointer">
                                     <i class="fa-solid fa-wand-magic-sparkles text-sakura-400"></i> Detalhes
                                 </button>
-                                <a href="#" target="_blank" class="text-sakura-500 hover:underline flex items-center gap-1">
+                                <a href="kaomoji.html" class="text-sakura-500 hover:underline flex items-center gap-1 font-bold">
                                     Ver Site <i class="fa-solid fa-chevron-right text-[10px]"></i>
                                 </a>
                             </div>
@@ -334,7 +334,7 @@
                     </div>
                 </div>
 
-                <!-- Card 5: CARD DOS SITES DOS AMIGOS (Leva para amigos.html) -->
+                <!-- Card 5: Sites dos Amigos -->
                 <div class="project-card glass-card rounded-3xl overflow-hidden flex flex-col group hover:-translate-y-1.5 transition-all duration-300" data-category="webapps">
                     <div class="relative overflow-hidden h-44 bg-sakura-100">
                         <img src="https://placehold.co/600x400/ffdbe4/8b183a?text=Sites+dos+Amigos+🤝" alt="Sites feito para meus amigos" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500">
@@ -345,18 +345,17 @@
                     <div class="p-5 flex-1 flex flex-col justify-between space-y-3">
                         <div>
                             <h3 class="text-lg font-['Comfortaa'] font-bold text-sakura-900 group-hover:text-sakura-500 transition-colors">Sites feito para meus amigos</h3>
-                            <p class="text-sakura-800/80 text-xs mt-1.5 line-clamp-2 leading-relaxed">Uma coleção com os projetos que fiz com muito carinho para a galera (L&M SHOP e Detour Store).</p>
+                            <p class="text-sakura-800/80 text-xs mt-1.5 line-clamp-2 leading-relaxed">Uma seleção especial dos projetos que criei para meus amigos (L&M SHOP e Detour Store).</p>
                         </div>
                         <div class="space-y-3 pt-2">
                             <div class="flex flex-wrap gap-1 font-mono text-[11px]">
                                 <span class="px-2 py-0.5 rounded-md bg-sakura-200/60 text-sakura-900">Amigos</span>
-                                <span class="px-2 py-0.5 rounded-md bg-sakura-200/60 text-sakura-900">Lojas</span>
+                                <span class="px-2 py-0.5 rounded-md bg-sakura-200/60 text-sakura-900">Lojas Virtual</span>
                             </div>
                             <div class="flex items-center justify-between pt-2 border-t border-sakura-200/60 font-semibold text-xs">
                                 <button onclick="openModal(5)" class="text-sakura-700 hover:text-sakura-500 transition-colors flex items-center gap-1 cursor-pointer">
                                     <i class="fa-solid fa-wand-magic-sparkles text-sakura-400"></i> Detalhes
                                 </button>
-                                <!-- LINK QUE LEVA PARA A PÁGINA AMIGOS.HTML -->
                                 <a href="amigos.html" class="text-sakura-500 hover:underline flex items-center gap-1 font-bold">
                                     Ver Sites <i class="fa-solid fa-chevron-right text-[10px]"></i>
                                 </a>
@@ -488,7 +487,7 @@
                 image: "https://placehold.co/600x400/ffdbe4/8b183a?text=Kaomoji+Neko+🐾",
                 description: "Sitezinho fofo que gera emoticons japoneses aleatórios de gatinhos para copiar com um clique.",
                 tags: ["HTML", "CSS", "JS"],
-                link: "#"
+                link: "kaomoji.html"
             },
             {
                 id: 2,
@@ -534,80 +533,3 @@
 
         // Lógica dos Botões de Filtro
         const filterBtns = document.querySelectorAll('.filter-btn');
-        const projectCards = document.querySelectorAll('.project-card');
-
-        filterBtns.forEach(btn => {
-            btn.addEventListener('click', () => {
-                filterBtns.forEach(b => {
-                    b.classList.remove('bg-sakura-500', 'text-white');
-                    b.classList.add('glass-card', 'text-sakura-900');
-                });
-                btn.classList.remove('glass-card', 'text-sakura-900');
-                btn.classList.add('bg-sakura-500', 'text-white');
-
-                const filter = btn.getAttribute('data-filter');
-
-                projectCards.forEach(card => {
-                    if (filter === 'all' || card.getAttribute('data-category') === filter) {
-                        card.style.display = 'flex';
-                    } else {
-                        card.style.display = 'none';
-                    }
-                });
-            });
-        });
-
-        // Toggle do Menu Mobile
-        const mobileBtn = document.getElementById('mobile-menu-btn');
-        const mobileMenu = document.getElementById('mobile-menu');
-        if (mobileBtn && mobileMenu) {
-            mobileBtn.addEventListener('click', () => {
-                mobileMenu.classList.toggle('hidden');
-            });
-        }
-
-        // Lógica do Modal de Detalhes
-        const modal = document.getElementById('project-modal');
-        const closeModalBtn = document.getElementById('close-modal');
-        const modalTitle = document.getElementById('modal-title');
-        const modalImage = document.getElementById('modal-image');
-        const modalDesc = document.getElementById('modal-desc');
-        const modalTags = document.getElementById('modal-tags');
-        const modalLiveLink = document.getElementById('modal-live-link');
-
-        function openModal(id) {
-            const project = projectsData.find(p => p.id === id);
-            if (!project) return;
-
-            modalTitle.textContent = project.title;
-            modalImage.src = project.image;
-            modalImage.alt = project.title;
-            modalDesc.textContent = project.description;
-            modalLiveLink.href = project.link;
-
-            modalTags.innerHTML = project.tags.map(t => 
-                `<span class="px-2.5 py-1 rounded-md bg-sakura-100 text-sakura-800 font-mono">${t}</span>`
-            ).join('');
-
-            modal.classList.remove('hidden');
-            modal.classList.add('flex');
-        }
-
-        if (closeModalBtn) {
-            closeModalBtn.addEventListener('click', () => {
-                modal.classList.add('hidden');
-                modal.classList.remove('flex');
-            });
-        }
-
-        if (modal) {
-            modal.addEventListener('click', (e) => {
-                if (e.target === modal) {
-                    modal.classList.add('hidden');
-                    modal.classList.remove('flex');
-                }
-            });
-        }
-    </script>
-</body>
-</html>
