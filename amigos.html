@@ -1,0 +1,194 @@
+<!DOCTYPE html>
+<html lang="pt-BR" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cantinho dos Amigos 🌸</title>
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        sakura: {
+                            50: '#fff5f7',
+                            100: '#ffeef2',
+                            200: '#ffdbe4',
+                            300: '#ffb7ca',
+                            400: '#ff85a3',
+                            500: '#ff547d',
+                            600: '#eb2c5b',
+                            700: '#c71946',
+                            800: '#a5173e',
+                            900: '#8b183a',
+                            card: 'rgba(255, 255, 255, 0.75)',
+                        }
+                    },
+                    fontFamily: {
+                        sans: ['Comfortaa', 'Quicksand', 'sans-serif'],
+                        mono: ['Fira Code', 'monospace']
+                    }
+                }
+            }
+        }
+    </script>
+    <!-- FontAwesome Icons & Google Fonts -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Comfortaa:wght@400;600;700&family=Quicksand:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+    <style>
+        /* O GIF animado de fundo */
+        body {
+            font-family: 'Quicksand', sans-serif;
+            background: linear-gradient(rgba(0, 0, 0, 0.25), rgba(0, 0, 0, 0.25)), url('download.gif');
+            background-size: cover;
+            background-position: center;
+            background-attachment: fixed;
+            background-repeat: no-repeat;
+            color: #4a343a;
+            overflow-x: hidden;
+            position: relative;
+        }
+
+        /* A barra rosa do topo com a imagem original */
+        .glass-nav {
+            background: linear-gradient(rgba(255, 227, 232, 0.85), rgba(255, 227, 232, 0.85)), url('7 Sem Título_20261108005507.png');
+            background-size: cover;
+            background-position: center;
+            backdrop-filter: blur(14px);
+            -webkit-backdrop-filter: blur(14px);
+            border-bottom: 1px solid rgba(255, 183, 202, 0.4);
+        }
+
+        /* Efeito Glassmorphism para os Cards */
+        .glass-card {
+            background: rgba(255, 255, 255, 0.85);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            border: 1px solid rgba(255, 183, 202, 0.4);
+            box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.15);
+        }
+
+        /* Custom Scrollbar */
+        ::-webkit-scrollbar {
+            width: 8px;
+        }
+        ::-webkit-scrollbar-track {
+            background: rgba(255, 227, 232, 0.5);
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #ff85a3;
+            border-radius: 999px;
+        }
+        ::-webkit-scrollbar-thumb:hover {
+            background: #ff547d;
+        }
+    </style>
+</head>
+<body class="min-h-screen flex flex-col justify-between selection:bg-sakura-300 selection:text-sakura-900">
+
+    <!-- Header Navigation -->
+    <header class="fixed top-0 left-0 w-full z-50 glass-nav transition-all duration-300">
+        <div class="max-w-6xl mx-auto px-4 sm:px-6 h-20 flex items-center justify-between relative z-10">
+            <!-- Logo voltando para a página principal -->
+            <a href="index.html" class="flex items-center gap-3 group">
+                <div class="w-11 h-11 rounded-2xl bg-gradient-to-tr from-sakura-400 to-sakura-300 flex items-center justify-center text-white text-xl shadow-md group-hover:rotate-12 transition-transform duration-300">
+                    🌸
+                </div>
+                <div class="flex flex-col">
+                    <span class="font-['Comfortaa'] font-bold text-lg sm:text-xl text-sakura-900 tracking-tight">
+                        Casinha do <span class="text-sakura-500">Ayzin</span>
+                    </span>
+                    <span class="text-[10px] text-sakura-700 font-mono">- cantinho dos amigos -</span>
+                </div>
+            </a>
+
+            <!-- Menu -->
+            <nav class="flex items-center gap-4 font-semibold text-sm text-sakura-900">
+                <a href="index.html" class="px-4 py-2 rounded-full glass-card hover:bg-white transition-all flex items-center gap-2">
+                    <i class="fa-solid fa-house text-sakura-500"></i> Voltar à Início
+                </a>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Content Wrapper -->
+    <main class="relative z-10 pt-32 pb-16 flex-grow max-w-5xl mx-auto px-4 sm:px-6 w-full">
+        
+        <!-- Header da Seção -->
+        <div class="text-center max-w-2xl mx-auto mb-12 space-y-3">
+            <span class="text-xs font-mono uppercase tracking-widest text-sakura-200 font-bold drop-shadow">// PROJETOS ESPECIAIS</span>
+            <h1 class="text-3xl sm:text-4xl font-['Comfortaa'] font-bold text-white drop-shadow">Sites feitos para meus amigos ✨</h1>
+            <p class="text-sm text-white/95 drop-shadow">Uma vitrine com os sites e lojas criados com muito carinho para o pessoal!</p>
+        </div>
+
+        <!-- Grid com os 2 Sites dos Amigos -->
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+            
+            <!-- Card 1: L&M SHOP -->
+            <div class="glass-card rounded-3xl overflow-hidden flex flex-col group hover:-translate-y-1.5 transition-all duration-300">
+                <div class="relative overflow-hidden h-52 bg-sakura-100">
+                    <img src="https://placehold.co/600x400/ffdbe4/8b183a?text=L&M+SHOP+🛍️" alt="L&M SHOP" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500">
+                    <span class="absolute top-3 right-3 text-[10px] font-mono px-3 py-1 rounded-full bg-white/90 text-sakura-700 font-bold shadow-sm">
+                        🌐 Loja Virtual
+                    </span>
+                </div>
+                <div class="p-6 flex-1 flex flex-col justify-between space-y-4">
+                    <div>
+                        <h3 class="text-xl font-['Comfortaa'] font-bold text-sakura-900 group-hover:text-sakura-500 transition-colors">L&M SHOP</h3>
+                        <p class="text-sakura-800 text-xs sm:text-sm mt-2 leading-relaxed">Loja online estilizada com temas customizados, modo escuro e player de áudio integrado.</p>
+                    </div>
+                    <div class="space-y-4 pt-2">
+                        <div class="flex flex-wrap gap-1 font-mono text-[11px]">
+                            <span class="px-2.5 py-1 rounded-md bg-sakura-200/60 text-sakura-900">HTML/CSS</span>
+                            <span class="px-2.5 py-1 rounded-md bg-sakura-200/60 text-sakura-900">Audio Player</span>
+                        </div>
+                        <div class="flex items-center justify-end pt-3 border-t border-sakura-200/60 font-semibold text-sm">
+                            <a href="https://lmsshop.github.io/lmshop" target="_blank" class="px-5 py-2.5 rounded-xl bg-sakura-500 text-white hover:bg-sakura-600 transition-all flex items-center gap-2 shadow-md">
+                                Visitar Site <i class="fa-solid fa-arrow-up-right-from-square text-xs"></i>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Card 2: Detour Store -->
+            <div class="glass-card rounded-3xl overflow-hidden flex flex-col group hover:-translate-y-1.5 transition-all duration-300">
+                <div class="relative overflow-hidden h-52 bg-sakura-100">
+                    <img src="https://placehold.co/600x400/ffdbe4/8b183a?text=Detour+Store+🪐" alt="Detour Store" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500">
+                    <span class="absolute top-3 right-3 text-[10px] font-mono px-3 py-1 rounded-full bg-white/90 text-sakura-700 font-bold shadow-sm">
+                        🌐 E-commerce
+                    </span>
+                </div>
+                <div class="p-6 flex-1 flex flex-col justify-between space-y-4">
+                    <div>
+                        <h3 class="text-xl font-['Comfortaa'] font-bold text-sakura-900 group-hover:text-sakura-500 transition-colors">Detour Store</h3>
+                        <p class="text-sakura-800 text-xs sm:text-sm mt-2 leading-relaxed">Plataforma interativa com animações de entrada suaves, links sociais e design focado na experiência.</p>
+                    </div>
+                    <div class="space-y-4 pt-2">
+                        <div class="flex flex-wrap gap-1 font-mono text-[11px]">
+                            <span class="px-2.5 py-1 rounded-md bg-sakura-200/60 text-sakura-900">UI/UX</span>
+                            <span class="px-2.5 py-1 rounded-md bg-sakura-200/60 text-sakura-900">Animações</span>
+                        </div>
+                        <div class="flex items-center justify-end pt-3 border-t border-sakura-200/60 font-semibold text-sm">
+                            <a href="https://detourstore.github.io/DS-/#" target="_blank" class="px-5 py-2.5 rounded-xl bg-sakura-500 text-white hover:bg-sakura-600 transition-all flex items-center gap-2 shadow-md">
+                                Visitar Site <i class="fa-solid fa-arrow-up-right-from-square text-xs"></i>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </main>
+
+    <!-- Footer -->
+    <footer class="relative z-10 border-t border-white/20 py-8 text-center text-xs text-white/90 font-medium drop-shadow">
+        <p>Feito com 🌸 e carinho por Ayzin • Cantinho dos Amigos</p>
+    </footer>
+
+</body>
+</html>
