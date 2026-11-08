@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Mini Tamagotchi Web 👾🌸</title>
+    <title>Mini Tamagotchi Kawaii 🌸</title>
     <!-- Tailwind CSS CDN -->
     <script src="https://cdn.tailwindcss.com"></script>
     <script>
@@ -22,7 +22,7 @@
                             700: '#c71946',
                             800: '#a5173e',
                             900: '#8b183a',
-                            card: 'rgba(255, 255, 255, 0.88)',
+                            card: 'rgba(255, 255, 255, 0.92)',
                         }
                     },
                     fontFamily: {
@@ -33,14 +33,13 @@
             }
         }
     </script>
-    <!-- FontAwesome Icons & Google Fonts -->
+    <!-- FontAwesome & Google Fonts -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Comfortaa:wght@400;600;700&family=Quicksand:wght@400;500;600;700&display=swap" rel="stylesheet">
 
     <style>
-        /* O GIF animado de fundo */
         body {
             font-family: 'Quicksand', sans-serif;
             background: linear-gradient(rgba(0, 0, 0, 0.35), rgba(0, 0, 0, 0.35)), url('download.gif');
@@ -53,9 +52,8 @@
             position: relative;
         }
 
-        /* A barra rosa do topo com a imagem original */
         .glass-nav {
-            background: linear-gradient(rgba(255, 227, 232, 0.88), rgba(255, 227, 232, 0.88)), url('7 Sem Título_20261108005507.png');
+            background: linear-gradient(rgba(255, 227, 232, 0.9), rgba(255, 227, 232, 0.9)), url('7 Sem Título_20261108005507.png');
             background-size: cover;
             background-position: center;
             backdrop-filter: blur(14px);
@@ -63,25 +61,14 @@
             border-bottom: 1px solid rgba(255, 183, 202, 0.4);
         }
 
-        /* Efeito Glassmorphism para os Cards */
         .glass-card {
-            background: rgba(255, 255, 255, 0.88);
+            background: rgba(255, 255, 255, 0.92);
             backdrop-filter: blur(12px);
             -webkit-backdrop-filter: blur(12px);
-            border: 1px solid rgba(255, 183, 202, 0.4);
+            border: 1px solid rgba(255, 183, 202, 0.5);
             box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.15);
         }
 
-        /* Animações do Bichinho */
-        @keyframes floatPet {
-            0%, 100% { transform: translateY(0px); }
-            50% { transform: translateY(-8px); }
-        }
-        .animate-pet {
-            animation: floatPet 2.5s ease-in-out infinite;
-        }
-
-        /* Custom Scrollbar */
         ::-webkit-scrollbar {
             width: 6px;
         }
@@ -92,254 +79,725 @@
             background: #ff85a3;
             border-radius: 999px;
         }
+        ::-webkit-scrollbar-thumb:hover {
+            background: #ff547d;
+        }
     </style>
 </head>
 <body class="min-h-screen flex flex-col justify-between selection:bg-sakura-300 selection:text-sakura-900">
 
-    <!-- Header Navigation -->
-    <header class="fixed top-0 left-0 w-full z-50 glass-nav transition-all duration-300">
+    <!-- Toast Notification -->
+    <div id="toast" class="fixed top-24 left-1/2 -translate-x-1/2 z-50 bg-sakura-900 text-white px-5 py-2.5 rounded-full text-xs font-bold shadow-xl transition-all duration-300 opacity-0 pointer-events-none flex items-center gap-2">
+        <span id="toast-icon">✨</span>
+        <span id="toast-msg">Mensagem</span>
+    </div>
+
+    <!-- Header -->
+    <header class="fixed top-0 left-0 w-full z-40 glass-nav transition-all duration-300">
         <div class="max-w-6xl mx-auto px-4 sm:px-6 h-20 flex items-center justify-between relative z-10">
-            <!-- Logo voltando para a página principal -->
-            <a href="index.html" class="flex items-center gap-3 group">
-                <div class="w-11 h-11 rounded-2xl bg-gradient-to-tr from-sakura-400 to-sakura-300 flex items-center justify-center text-white text-xl shadow-md group-hover:rotate-12 transition-transform duration-300">
-                    👾
+            <a href="index.html" class="flex items-center gap-2.5 sm:gap-3 group">
+                <div class="w-10 h-10 sm:w-11 sm:h-11 rounded-2xl bg-gradient-to-tr from-sakura-400 to-sakura-300 flex items-center justify-center text-white text-lg sm:text-xl shadow-md group-hover:rotate-12 transition-transform duration-300">
+                    🌸
                 </div>
                 <div class="flex flex-col">
-                    <span class="font-['Comfortaa'] font-bold text-lg sm:text-xl text-sakura-900 tracking-tight">
-                        Tamagotchi <span class="text-sakura-500">Web</span>
+                    <span class="font-['Comfortaa'] font-bold text-base sm:text-xl text-sakura-900 tracking-tight">
+                        Tamagotchi <span class="text-sakura-500">Kawaii</span>
                     </span>
-                    <span class="text-[10px] text-sakura-700 font-mono">- bichinho virtual -</span>
+                    <span class="text-[9px] sm:text-[10px] text-sakura-700 font-mono">- +1000 Pets & Gacha -</span>
                 </div>
             </a>
 
-            <!-- Menu -->
-            <nav class="flex items-center gap-4 font-semibold text-sm text-sakura-900">
-                <a href="index.html" class="px-4 py-2 rounded-full glass-card hover:bg-white transition-all flex items-center gap-2">
-                    <i class="fa-solid fa-house text-sakura-500"></i> Voltar ao Início
-                </a>
-            </nav>
+            <!-- Quantidade de Ovos & Moedas -->
+            <div class="flex items-center gap-2 sm:gap-3">
+                <div class="glass-card px-3.5 py-1.5 rounded-full text-xs font-bold text-sakura-900 flex items-center gap-1.5 shadow-sm border border-sakura-300">
+                    <span class="text-sm">🥚</span> <span id="header-eggs">0</span> Ovos
+                </div>
+                <div class="glass-card px-3.5 py-1.5 rounded-full text-xs font-bold text-sakura-900 flex items-center gap-1.5 shadow-sm border border-sakura-300">
+                    <span class="text-amber-500 text-sm">🌸</span> <span id="header-coins">100</span>
+                </div>
+            </div>
         </div>
     </header>
 
-    <!-- Content Wrapper -->
-    <main class="relative z-10 pt-32 pb-16 flex-grow max-w-xl mx-auto px-4 sm:px-6 w-full">
-        
-        <!-- Header da Seção -->
-        <div class="text-center max-w-xl mx-auto mb-8 space-y-2">
-            <span class="text-xs font-mono uppercase tracking-widest text-sakura-200 font-bold drop-shadow">// MINI JOGO</span>
-            <h1 class="text-3xl sm:text-4xl font-['Comfortaa'] font-bold text-white drop-shadow">Seu Bichinho Virtual 🐱</h1>
-            <p class="text-sm text-white/95 drop-shadow">Cuide bem do seu Tamagotchi dando comida, carinho e descansando!</p>
+    <!-- Main Content -->
+    <main class="relative z-10 pt-28 pb-12 flex-grow max-w-4xl mx-auto px-4 sm:px-6 w-full space-y-6">
+
+        <!-- Barra de Seleção / Ações Principais -->
+        <div class="flex flex-wrap items-center justify-between gap-3 glass-card p-3.5 sm:p-4 rounded-3xl">
+            <div class="flex items-center gap-3">
+                <div id="active-pet-avatar" class="w-12 h-12 rounded-2xl bg-sakura-200 flex items-center justify-center text-2xl shadow-inner border border-sakura-300">🐱</div>
+                <div>
+                    <h2 id="active-pet-name" class="font-['Comfortaa'] font-bold text-sm sm:text-base text-sakura-900">Pet</h2>
+                    <p class="text-[10px] text-sakura-700 font-mono">Nv. <span id="active-pet-lvl">1</span> • <span id="active-pet-rarity">Comum</span></p>
+                </div>
+            </div>
+            <div class="flex flex-wrap items-center gap-2">
+                <button onclick="openEggGachaModal()" class="px-3.5 py-2 rounded-2xl bg-gradient-to-r from-pink-400 to-sakura-500 text-white font-bold text-xs shadow-md hover:opacity-90 transition-all flex items-center gap-1.5 cursor-pointer">
+                    <span>🥚</span> Chocar Ovo (<span id="btn-egg-count">0</span>)
+                </button>
+                <button onclick="openCollectionModal()" class="px-3.5 py-2 rounded-2xl glass-card text-sakura-900 font-bold text-xs hover:bg-white transition-all flex items-center gap-1.5 cursor-pointer border border-sakura-300">
+                    <span>🎒</span> Coleção (<span id="collection-count">1</span>)
+                </button>
+            </div>
         </div>
 
-        <!-- Card do Tamagotchi (Dispositivo Tamagotchi) -->
-        <div class="glass-card rounded-3xl p-6 sm:p-8 space-y-6 shadow-2xl relative overflow-hidden text-center border-2 border-sakura-300">
-            
-            <!-- Ecrã do Tamagotchi -->
-            <div class="p-6 rounded-3xl bg-gradient-to-b from-pink-50 to-sakura-100 border-4 border-sakura-300 shadow-inner space-y-4 relative">
-                
-                <!-- Nome e Estado -->
-                <div class="flex justify-between items-center text-xs font-mono font-bold text-sakura-800">
-                    <span id="pet-name">Tama-Neko 🌸</span>
-                    <span id="pet-status-badge" class="px-2 py-0.5 rounded-full bg-white/80 text-sakura-600 border border-sakura-200">Feliz ✨</span>
-                </div>
+        <!-- Sala do Mascote -->
+        <div class="glass-card rounded-3xl p-6 sm:p-8 text-center relative overflow-hidden shadow-xl border border-sakura-300 flex flex-col items-center justify-center min-h-[360px]">
+            <div id="room-bg" class="absolute inset-0 bg-gradient-to-b from-sakura-50/50 to-pink-100/40 pointer-events-none transition-colors duration-500"></div>
 
-                <!-- Avatar Animado do Bichinho -->
-                <div class="py-6 flex items-center justify-center">
-                    <div id="pet-avatar" class="text-7xl sm:text-8xl animate-pet transition-all duration-300 select-none">
-                        🐱
-                    </div>
-                </div>
+            <!-- Balão de Fala do Pet -->
+            <div id="speech-bubble" class="absolute top-4 bg-white/95 px-4 py-2 rounded-2xl shadow-md text-xs font-bold text-sakura-900 border border-sakura-200 transition-all opacity-90 animate-bounce z-20">
+                Oie! Sou seu novo amigo! 🌸
+            </div>
 
-                <!-- Mensagem do Bichinho -->
-                <div class="p-2.5 rounded-xl bg-white/90 border border-sakura-200 text-xs text-sakura-900 font-medium">
-                    <p id="pet-speech">"Miau! Estou pronto para brincar!" 🍡</p>
+            <!-- Canvas do Mascote -->
+            <div class="relative z-10 my-4 cursor-pointer group" onclick="petTapReaction()">
+                <canvas id="petCanvas" width="220" height="220" class="mx-auto drop-shadow-lg group-hover:scale-105 transition-transform"></canvas>
+                <div class="absolute -bottom-2 left-1/2 -translate-x-1/2 bg-white/80 px-3 py-0.5 rounded-full text-[10px] font-mono text-sakura-700 font-bold shadow-xs whitespace-nowrap">
+                    Clique para fazer carinho! 💖
                 </div>
             </div>
 
-            <!-- Barras de Estado -->
-            <div class="space-y-3 text-left font-semibold text-xs text-sakura-900">
-                
-                <!-- Fome -->
-                <div class="space-y-1">
-                    <div class="flex justify-between">
-                        <span>🍗 Alimentado:</span>
-                        <span id="hunger-val" class="font-mono">100%</span>
-                    </div>
-                    <div class="w-full bg-sakura-200/70 h-3 rounded-full overflow-hidden">
-                        <div id="hunger-bar" class="bg-sakura-500 h-full rounded-full transition-all duration-500" style="width: 100%;"></div>
-                    </div>
+            <!-- Barras de Status -->
+            <div class="grid grid-cols-2 sm:grid-cols-4 gap-3 w-full max-w-2xl mt-4 relative z-10 text-xs font-semibold">
+                <div class="glass-card p-2.5 rounded-2xl space-y-1 bg-white/80">
+                    <div class="flex justify-between text-sakura-900"><span>🍕 Fome</span><span id="stat-fome">80%</span></div>
+                    <div class="w-full h-2.5 bg-sakura-100 rounded-full overflow-hidden"><div id="bar-fome" class="h-full bg-emerald-400 transition-all" style="width: 80%"></div></div>
                 </div>
-
-                <!-- Felicidade -->
-                <div class="space-y-1">
-                    <div class="flex justify-between">
-                        <span>🎾 Felicidade:</span>
-                        <span id="happiness-val" class="font-mono">100%</span>
-                    </div>
-                    <div class="w-full bg-sakura-200/70 h-3 rounded-full overflow-hidden">
-                        <div id="happiness-bar" class="bg-sakura-400 h-full rounded-full transition-all duration-500" style="width: 100%;"></div>
-                    </div>
+                <div class="glass-card p-2.5 rounded-2xl space-y-1 bg-white/80">
+                    <div class="flex justify-between text-sakura-900"><span>💖 Felicidade</span><span id="stat-feli">90%</span></div>
+                    <div class="w-full h-2.5 bg-sakura-100 rounded-full overflow-hidden"><div id="bar-feli" class="h-full bg-pink-400 transition-all" style="width: 90%"></div></div>
                 </div>
-
-                <!-- Energia -->
-                <div class="space-y-1">
-                    <div class="flex justify-between">
-                        <span>⚡ Energia:</span>
-                        <span id="energy-val" class="font-mono">100%</span>
-                    </div>
-                    <div class="w-full bg-sakura-200/70 h-3 rounded-full overflow-hidden">
-                        <div id="energy-bar" class="bg-pink-400 h-full rounded-full transition-all duration-500" style="width: 100%;"></div>
-                    </div>
+                <div class="glass-card p-2.5 rounded-2xl space-y-1 bg-white/80">
+                    <div class="flex justify-between text-sakura-900"><span>⚡ Energia</span><span id="stat-ener">100%</span></div>
+                    <div class="w-full h-2.5 bg-sakura-100 rounded-full overflow-hidden"><div id="bar-ener" class="h-full bg-amber-400 transition-all" style="width: 100%"></div></div>
                 </div>
-
+                <div class="glass-card p-2.5 rounded-2xl space-y-1 bg-white/80">
+                    <div class="flex justify-between text-sakura-900"><span>✨ Higiene</span><span id="stat-higi">85%</span></div>
+                    <div class="w-full h-2.5 bg-sakura-100 rounded-full overflow-hidden"><div id="bar-higi" class="h-full bg-sky-400 transition-all" style="width: 85%"></div></div>
+                </div>
             </div>
-
-            <!-- Botões de Ações -->
-            <div class="grid grid-cols-2 sm:grid-cols-4 gap-2.5 pt-2">
-                <button onclick="feedPet()" class="px-3 py-3 rounded-2xl bg-sakura-500 text-white font-bold text-xs shadow hover:bg-sakura-600 transition-all flex flex-col items-center gap-1 cursor-pointer">
-                    <span class="text-lg">🐟</span> Alimentar
-                </button>
-                <button onclick="playPet()" class="px-3 py-3 rounded-2xl bg-sakura-500 text-white font-bold text-xs shadow hover:bg-sakura-600 transition-all flex flex-col items-center gap-1 cursor-pointer">
-                    <span class="text-lg">🧶</span> Brincar
-                </button>
-                <button onclick="sleepPet()" class="px-3 py-3 rounded-2xl bg-sakura-500 text-white font-bold text-xs shadow hover:bg-sakura-600 transition-all flex flex-col items-center gap-1 cursor-pointer">
-                    <span class="text-lg">😴</span> Dormir
-                </button>
-                <button onclick="resetPet()" class="px-3 py-3 rounded-2xl glass-card text-sakura-900 font-bold text-xs hover:bg-white transition-all flex flex-col items-center gap-1 cursor-pointer">
-                    <span class="text-lg">🔄</span> Reiniciar
-                </button>
-            </div>
-
         </div>
 
+        <!-- Menu de Ações de Cuidados -->
+        <div class="grid grid-cols-3 sm:grid-cols-6 gap-3">
+            <button onclick="feedPet()" class="glass-card p-3 rounded-2xl text-center hover:bg-white hover:scale-105 transition-all cursor-pointer shadow-sm group">
+                <span class="text-2xl block mb-1 group-hover:rotate-12 transition-transform">🍡</span>
+                <span class="text-xs font-bold text-sakura-900">Alimentar</span>
+            </button>
+            <button onclick="playPet()" class="glass-card p-3 rounded-2xl text-center hover:bg-white hover:scale-105 transition-all cursor-pointer shadow-sm group">
+                <span class="text-2xl block mb-1 group-hover:rotate-12 transition-transform">🎾</span>
+                <span class="text-xs font-bold text-sakura-900">Brincar</span>
+            </button>
+            <button onclick="sleepPet()" class="glass-card p-3 rounded-2xl text-center hover:bg-white hover:scale-105 transition-all cursor-pointer shadow-sm group">
+                <span class="text-2xl block mb-1 group-hover:rotate-12 transition-transform">🌙</span>
+                <span class="text-xs font-bold text-sakura-900">Dormir</span>
+            </button>
+            <button onclick="cleanPet()" class="glass-card p-3 rounded-2xl text-center hover:bg-white hover:scale-105 transition-all cursor-pointer shadow-sm group">
+                <span class="text-2xl block mb-1 group-hover:rotate-12 transition-transform">🧼</span>
+                <span class="text-xs font-bold text-sakura-900">Limpar</span>
+            </button>
+            <button onclick="openShopModal()" class="glass-card p-3 rounded-2xl text-center hover:bg-white hover:scale-105 transition-all cursor-pointer shadow-sm group">
+                <span class="text-2xl block mb-1 group-hover:rotate-12 transition-transform">🛍️</span>
+                <span class="text-xs font-bold text-sakura-900">Lojinha</span>
+            </button>
+            <button onclick="openMinigamesModal()" class="glass-card p-3 rounded-2xl text-center hover:bg-white hover:scale-105 transition-all cursor-pointer shadow-sm group">
+                <span class="text-2xl block mb-1 group-hover:rotate-12 transition-transform">🕹️</span>
+                <span class="text-xs font-bold text-sakura-900">Minigames</span>
+            </button>
+        </div>
     </main>
 
-    <!-- Footer -->
-    <footer class="relative z-10 border-t border-white/20 py-8 text-center text-xs text-white/90 font-medium drop-shadow">
-        <p>Feito com 🌸 e carinho por Ayzin • Casinha do Ayzin</p>
-    </footer>
+    <!-- Modal: Gacha de Ovos -->
+    <div id="egg-modal" class="fixed inset-0 z-50 bg-sakura-900/60 backdrop-blur-sm hidden items-center justify-center p-4">
+        <div class="glass-card bg-white/95 border border-sakura-300 rounded-3xl max-w-md w-full p-6 text-center relative space-y-4 shadow-2xl">
+            <button onclick="closeEggGachaModal()" class="absolute top-4 right-4 text-sakura-600 hover:text-sakura-900 text-lg w-8 h-8 rounded-full bg-sakura-100 flex items-center justify-center cursor-pointer">
+                <i class="fa-solid fa-xmark"></i>
+            </button>
+            <h3 class="text-xl font-['Comfortaa'] font-bold text-sakura-900">🥚 Incubadora Sakura Gacha</h3>
+            <p class="text-xs text-sakura-800">Você possui <strong class="text-sakura-600"><span id="modal-egg-count">0</span> Ovo(s)</strong> no seu inventário.</p>
 
-    <!-- Lógica JS do Tamagotchi -->
+            <div id="egg-container" class="py-6">
+                <div class="text-6xl animate-bounce inline-block cursor-pointer hover:scale-110 transition-transform" onclick="hatchEgg()">🥚</div>
+                <p class="text-xs font-mono text-sakura-700 mt-2">Clique no ovo para chocar!</p>
+            </div>
+
+            <div id="hatch-result" class="hidden space-y-3">
+                <div class="w-20 h-20 mx-auto rounded-2xl bg-sakura-100 flex items-center justify-center text-4xl shadow-inner" id="result-icon">🐱</div>
+                <h4 id="result-title" class="font-bold text-sakura-900 text-base">Novo Pet Descoberto!</h4>
+                <p id="result-desc" class="text-xs text-sakura-700"></p>
+                <div class="flex justify-center gap-2 pt-2">
+                    <button onclick="setActiveFromHatch()" class="px-4 py-2 rounded-xl bg-sakura-500 text-white font-bold text-xs hover:bg-sakura-600 shadow">Equipar Este Pet</button>
+                    <button onclick="resetEggBox()" class="px-4 py-2 rounded-xl glass-card text-sakura-900 font-bold text-xs border border-sakura-300 shadow">Ver Outros Ovos</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal: Coleção (Pokedex Kawaii) -->
+    <div id="collection-modal" class="fixed inset-0 z-50 bg-sakura-900/60 backdrop-blur-sm hidden items-center justify-center p-4">
+        <div class="glass-card bg-white/95 border border-sakura-300 rounded-3xl max-w-2xl w-full p-6 relative space-y-4 shadow-2xl max-h-[85vh] overflow-y-auto">
+            <button onclick="closeCollectionModal()" class="absolute top-4 right-4 text-sakura-600 hover:text-sakura-900 text-lg w-8 h-8 rounded-full bg-sakura-100 flex items-center justify-center cursor-pointer">
+                <i class="fa-solid fa-xmark"></i>
+            </button>
+            <h3 class="text-xl font-['Comfortaa'] font-bold text-sakura-900">🎒 Sua Coleção de Pets Kawaii</h3>
+            <p class="text-xs text-sakura-800">Escolha qual pet deseja cuidar ativamente:</p>
+            
+            <div id="pets-grid" class="grid grid-cols-2 sm:grid-cols-3 gap-3 pt-2"></div>
+        </div>
+    </div>
+
+    <!-- Modal: Minigames Arcade -->
+    <div id="minigames-modal" class="fixed inset-0 z-50 bg-sakura-900/60 backdrop-blur-sm hidden items-center justify-center p-4">
+        <div class="glass-card bg-white/95 border border-sakura-300 rounded-3xl max-w-md w-full p-6 text-center relative space-y-4 shadow-2xl">
+            <button onclick="closeMinigamesModal()" class="absolute top-4 right-4 text-sakura-600 hover:text-sakura-900 text-lg w-8 h-8 rounded-full bg-sakura-100 flex items-center justify-center cursor-pointer">
+                <i class="fa-solid fa-xmark"></i>
+            </button>
+            <h3 class="text-xl font-['Comfortaa'] font-bold text-sakura-900">🕹️ Central de Minigames</h3>
+            <p class="text-xs text-sakura-800">Jogue para ganhar Moedas Sakura e deixar seu pet mais feliz!</p>
+
+            <div class="space-y-3 pt-2">
+                <button onclick="playMiniGame('catch')" class="w-full p-3 rounded-2xl glass-card text-left flex items-center justify-between hover:bg-white transition-all border border-sakura-200 cursor-pointer">
+                    <div class="flex items-center gap-3">
+                        <span class="text-2xl">🌸</span>
+                        <div>
+                            <h4 class="font-bold text-sakura-900 text-sm">Pegar Pétalas Sakura</h4>
+                            <p class="text-[11px] text-sakura-700">Ganhe +30 Moedas!</p>
+                        </div>
+                    </div>
+                    <span class="px-3 py-1 rounded-xl bg-sakura-500 text-white font-bold text-xs shadow">Jogar</span>
+                </button>
+                <button onclick="playMiniGame('memory')" class="w-full p-3 rounded-2xl glass-card text-left flex items-center justify-between hover:bg-white transition-all border border-sakura-200 cursor-pointer">
+                    <div class="flex items-center gap-3">
+                        <span class="text-2xl">🍡</span>
+                        <div>
+                            <h4 class="font-bold text-sakura-900 text-sm">Jogo da Memória Docinha</h4>
+                            <p class="text-[11px] text-sakura-700">Ganhe +40 Moedas!</p>
+                        </div>
+                    </div>
+                    <span class="px-3 py-1 rounded-xl bg-sakura-500 text-white font-bold text-xs shadow">Jogar</span>
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal: Lojinha Completa (Comida, Ovos & Acessórios) -->
+    <div id="shop-modal" class="fixed inset-0 z-50 bg-sakura-900/60 backdrop-blur-sm hidden items-center justify-center p-4">
+        <div class="glass-card bg-white/95 border border-sakura-300 rounded-3xl max-w-lg w-full p-6 text-center relative space-y-4 shadow-2xl max-h-[85vh] overflow-y-auto">
+            <button onclick="closeShopModal()" class="absolute top-4 right-4 text-sakura-600 hover:text-sakura-900 text-lg w-8 h-8 rounded-full bg-sakura-100 flex items-center justify-center cursor-pointer">
+                <i class="fa-solid fa-xmark"></i>
+            </button>
+            <h3 class="text-xl font-['Comfortaa'] font-bold text-sakura-900">🛍️ Lojinha Kawaii</h3>
+            <p class="text-xs text-sakura-800">Compre comidinhas, ovos gacha e acessórios para os pets!</p>
+            
+            <!-- Tabs da Lojinha -->
+            <div class="flex justify-center border-b border-sakura-200 pb-2 gap-2 text-xs font-bold">
+                <button onclick="switchShopTab('gacha')" id="tab-gacha" class="px-3 py-1.5 rounded-xl bg-sakura-500 text-white">🥚 Ovos Gacha</button>
+                <button onclick="switchShopTab('food')" id="tab-food" class="px-3 py-1.5 rounded-xl glass-card text-sakura-900">🍡 Comidas</button>
+                <button onclick="switchShopTab('acc')" id="tab-acc" class="px-3 py-1.5 rounded-xl glass-card text-sakura-900">🎀 Acessórios</button>
+            </div>
+
+            <!-- Conteúdo Ovos Gacha -->
+            <div id="shop-content-gacha" class="space-y-2 text-left pt-2">
+                <div class="flex items-center justify-between p-3 rounded-2xl bg-white/80 border border-sakura-200">
+                    <div class="flex items-center gap-3">
+                        <span class="text-3xl">🥚</span>
+                        <div>
+                            <h4 class="font-bold text-sakura-900 text-xs">Ovo Gacha Surpresa</h4>
+                            <p class="text-[10px] text-sakura-700">Choque +1200 combinações de novos pets!</p>
+                            <span class="text-xs font-bold text-amber-500">1.000 🌸 SakuraCoins</span>
+                        </div>
+                    </div>
+                    <button onclick="buyEgg()" class="px-3.5 py-1.5 rounded-xl bg-sakura-500 text-white font-bold text-xs shadow hover:bg-sakura-600 transition-all cursor-pointer">Comprar</button>
+                </div>
+            </div>
+
+            <!-- Conteúdo Comidas -->
+            <div id="shop-content-food" class="space-y-2 text-left pt-2 hidden">
+                <div class="flex items-center justify-between p-3 rounded-2xl bg-white/80 border border-sakura-200">
+                    <div>
+                        <h4 class="font-bold text-sakura-900 text-xs">🍡 Dango Especial (+30 Fome)</h4>
+                        <p class="text-[10px] text-sakura-700">Preço: 20 🌸</p>
+                    </div>
+                    <button onclick="buyFood('dango', 20, 30)" class="px-3 py-1.5 rounded-xl bg-sakura-500 text-white font-bold text-xs shadow cursor-pointer">Comprar</button>
+                </div>
+                <div class="flex items-center justify-between p-3 rounded-2xl bg-white/80 border border-sakura-200">
+                    <div>
+                        <h4 class="font-bold text-sakura-900 text-xs">🍵 Chá Matcha Premium (+50 Fome)</h4>
+                        <p class="text-[10px] text-sakura-700">Preço: 35 🌸</p>
+                    </div>
+                    <button onclick="buyFood('matcha', 35, 50)" class="px-3 py-1.5 rounded-xl bg-sakura-500 text-white font-bold text-xs shadow cursor-pointer">Comprar</button>
+                </div>
+            </div>
+
+            <!-- Conteúdo Acessórios -->
+            <div id="shop-content-acc" class="space-y-2 text-left pt-2 hidden">
+                <div class="flex items-center justify-between p-3 rounded-2xl bg-white/80 border border-sakura-200">
+                    <div class="flex items-center gap-2">
+                        <span class="text-2xl">👑</span>
+                        <div>
+                            <h4 class="font-bold text-sakura-900 text-xs">Coroa Real</h4>
+                            <p class="text-[10px] text-sakura-700">Preço: 150 🌸</p>
+                        </div>
+                    </div>
+                    <button onclick="buyAccessory('crown', 150)" class="px-3 py-1.5 rounded-xl bg-sakura-500 text-white font-bold text-xs shadow cursor-pointer">Comprar</button>
+                </div>
+                <div class="flex items-center justify-between p-3 rounded-2xl bg-white/80 border border-sakura-200">
+                    <div class="flex items-center gap-2">
+                        <span class="text-2xl">🎀</span>
+                        <div>
+                            <h4 class="font-bold text-sakura-900 text-xs">Laço Rosa Kawaii</h4>
+                            <p class="text-[10px] text-sakura-700">Preço: 100 🌸</p>
+                        </div>
+                    </div>
+                    <button onclick="buyAccessory('bow', 100)" class="px-3 py-1.5 rounded-xl bg-sakura-500 text-white font-bold text-xs shadow cursor-pointer">Comprar</button>
+                </div>
+                <div class="flex items-center justify-between p-3 rounded-2xl bg-white/80 border border-sakura-200">
+                    <div class="flex items-center gap-2">
+                        <span class="text-2xl">🕶️</span>
+                        <div>
+                            <h4 class="font-bold text-sakura-900 text-xs">Óculos Escuros Estilosos</h4>
+                            <p class="text-[10px] text-sakura-700">Preço: 120 🌸</p>
+                        </div>
+                    </div>
+                    <button onclick="buyAccessory('glasses', 120)" class="px-3 py-1.5 rounded-xl bg-sakura-500 text-white font-bold text-xs shadow cursor-pointer">Comprar</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Script Principal -->
     <script>
-        // Estado do Tamagotchi guardado em localStorage
-        let petState = JSON.parse(localStorage.getItem('tamagotchi_state')) || {
-            hunger: 100,
-            happiness: 100,
-            energy: 100,
-            isSleeping: false
-        };
+        // Banco de Dados de Espécies
+        const speciesList = [
+            { type: 'Neko', emoji: '🐱', nameBase: 'Neko' },
+            { type: 'Usagi', emoji: '🐰', nameBase: 'Coelhinho' },
+            { type: 'Kuma', emoji: '🐻', nameBase: 'Ursinho' },
+            { type: 'Ryu', emoji: '🐉', nameBase: 'Dragãozinho' },
+            { type: 'Kitsune', emoji: '🦊', nameBase: 'Raposa' },
+            { type: 'Panda', emoji: '🐼', nameBase: 'Panda' },
+            { type: 'Unicorn', emoji: '🦄', nameBase: 'Unicórnio' },
+            { type: 'Penguin', emoji: '🐧', nameBase: 'Pinguim' },
+            { type: 'Ghost', emoji: '👻', nameBase: 'Fantasminha' },
+            { type: 'Chick', emoji: '🐥', nameBase: 'Pintinho' }
+        ];
 
-        const avatar = document.getElementById('pet-avatar');
-        const speech = document.getElementById('pet-speech');
-        const badge = document.getElementById('pet-status-badge');
+        const adjectives = ['Fofo', 'Rosa', 'Dorminhoco', 'Mágico', 'Brilhante', 'Docinho', 'Celestial', 'Astro', 'Aventureiro', 'Sonhador'];
+        const colors = ['#ff85a3', '#ffb7ca', '#b5e2fa', '#e8c5ff', '#fff3b0', '#cbf3f0', '#ffb5a7', '#fcd5ce'];
 
-        const hungerBar = document.getElementById('hunger-bar');
-        const happinessBar = document.getElementById('happiness-bar');
-        const energyBar = document.getElementById('energy-bar');
+        // Gerar Pet Aleatório Único
+        function createRandomPet(idPrefix = 'pet_') {
+            const speciesObj = speciesList[Math.floor(Math.random() * speciesList.length)];
+            const adj = adjectives[Math.floor(Math.random() * adjectives.length)];
+            const color = colors[Math.floor(Math.random() * colors.length)];
+            const rand = Math.random();
+            let rarity = 'Comum';
+            if(rand > 0.85) rarity = 'Lendário ✨';
+            else if(rand > 0.6) rarity = 'Épico';
+            else if(rand > 0.3) rarity = 'Raro';
 
-        const hungerVal = document.getElementById('hunger-val');
-        const happinessVal = document.getElementById('happiness-val');
-        const energyVal = document.getElementById('energy-val');
-
-        function updateUI() {
-            // Garante limites 0-100
-            petState.hunger = Math.max(0, Math.min(100, petState.hunger));
-            petState.happiness = Math.max(0, Math.min(100, petState.happiness));
-            petState.energy = Math.max(0, Math.min(100, petState.energy));
-
-            // Atualiza barras
-            hungerBar.style.width = petState.hunger + '%';
-            happinessBar.style.width = petState.happiness + '%';
-            energyBar.style.width = petState.energy + '%';
-
-            hungerVal.textContent = Math.round(petState.hunger) + '%';
-            happinessVal.textContent = Math.round(petState.happiness) + '%';
-            energyVal.textContent = Math.round(petState.energy) + '%';
-
-            // Atualiza Aparência e Mensagem
-            if (petState.isSleeping) {
-                avatar.textContent = '💤';
-                badge.textContent = 'A Dormir 🌙';
-                speech.textContent = '"Zzz... Zzz... descansando!"';
-            } else if (petState.hunger < 30) {
-                avatar.textContent = '😿';
-                badge.textContent = 'Com Fome 🐟';
-                speech.textContent = '"Preciso de comidinha urgente! Miau..."';
-            } else if (petState.happiness < 30) {
-                avatar.textContent = '😾';
-                badge.textContent = 'Triste 🧶';
-                speech.textContent = '"Estou aborrecido, vamos brincar?"';
-            } else if (petState.energy < 30) {
-                avatar.textContent = '🙀';
-                badge.textContent = 'Cansado 😴';
-                speech.textContent = '"Estou com muito sono..."';
-            } else {
-                avatar.textContent = '🐱';
-                badge.textContent = 'Feliz ✨';
-                speech.textContent = '"Miau! Estou super feliz!" 🍡';
-            }
-
-            localStorage.setItem('tamagotchi_state', JSON.stringify(petState));
+            return {
+                id: idPrefix + Date.now() + '_' + Math.floor(Math.random() * 1000),
+                name: `${speciesObj.nameBase} ${adj}`,
+                species: speciesObj.type,
+                emoji: speciesObj.emoji,
+                color: color,
+                rarity: rarity,
+                level: 1,
+                fome: 90,
+                felicidade: 90,
+                energia: 100,
+                higiene: 90,
+                sleeping: false,
+                accessory: null,
+                accessoriesOwned: []
+            };
         }
 
-        function feedPet() {
-            if (petState.isSleeping) {
-                speech.textContent = '"Zzz... ele está a dormir agora!"';
-                return;
+        // Estado Inicial do Jogo (Começa com 0 ovos e 1 pet único aleatório gerado para a pessoa)
+        let initialPet = createRandomPet('first_pet_');
+        let gameState = JSON.parse(localStorage.getItem('sakura_tamagotchi_save')) || {
+            coins: 100,
+            eggs: 0,
+            activePetId: initialPet.id,
+            pets: [ initialPet ]
+        };
+
+        let lastHatchedPetId = null;
+
+        function showToast(msg, icon = '✨') {
+            const toast = document.getElementById('toast');
+            document.getElementById('toast-msg').textContent = msg;
+            document.getElementById('toast-icon').textContent = icon;
+            toast.classList.remove('opacity-0', 'pointer-events-none');
+            setTimeout(() => {
+                toast.classList.add('opacity-0', 'pointer-events-none');
+            }, 2500);
+        }
+
+        function saveGame() {
+            localStorage.setItem('sakura_tamagotchi_save', JSON.stringify(gameState));
+            updateHeader();
+        }
+
+        function updateHeader() {
+            document.getElementById('header-coins').textContent = gameState.coins;
+            document.getElementById('header-eggs').textContent = gameState.eggs || 0;
+            document.getElementById('btn-egg-count').textContent = gameState.eggs || 0;
+
+            const active = getActivePet();
+            if(active) {
+                document.getElementById('active-pet-name').textContent = active.name;
+                document.getElementById('active-pet-avatar').textContent = active.emoji;
+                document.getElementById('active-pet-lvl').textContent = active.level;
+                document.getElementById('active-pet-rarity').textContent = active.rarity;
+                
+                document.getElementById('stat-fome').textContent = active.fome + '%';
+                document.getElementById('bar-fome').style.width = active.fome + '%';
+                document.getElementById('stat-feli').textContent = active.felicidade + '%';
+                document.getElementById('bar-feli').style.width = active.felicidade + '%';
+                document.getElementById('stat-ener').textContent = active.energia + '%';
+                document.getElementById('bar-ener').style.width = active.energia + '%';
+                document.getElementById('stat-higi').textContent = active.higiene + '%';
+                document.getElementById('bar-higi').style.width = active.higiene + '%';
+
+                const roomBg = document.getElementById('room-bg');
+                if(active.sleeping) {
+                    roomBg.className = "absolute inset-0 bg-gradient-to-b from-slate-900 to-purple-950 pointer-events-none transition-colors duration-500";
+                } else {
+                    roomBg.className = "absolute inset-0 bg-gradient-to-b from-sakura-50/50 to-pink-100/40 pointer-events-none transition-colors duration-500";
+                }
             }
-            petState.hunger += 25;
-            petState.happiness += 5;
-            avatar.textContent = '😸';
-            speech.textContent = '"Nhame nhame! Delícia de peixinho!" 🐟';
-            updateUI();
+            document.getElementById('collection-count').textContent = gameState.pets.length;
+        }
+
+        function getActivePet() {
+            return gameState.pets.find(p => p.id === gameState.activePetId) || gameState.pets[0];
+        }
+
+        // Desenho no Canvas
+        const canvas = document.getElementById('petCanvas');
+        const ctx = canvas.getContext('2d');
+
+        function drawPet() {
+            ctx.clearRect(0, 0, canvas.width, canvas.height);
+            const pet = getActivePet();
+            if(!pet) return;
+
+            // Sombra
+            ctx.fillStyle = 'rgba(0,0,0,0.1)';
+            ctx.beginPath();
+            ctx.ellipse(110, 180, 50, 18, 0, 0, Math.PI * 2);
+            ctx.fill();
+
+            // Corpo
+            ctx.fillStyle = pet.color;
+            ctx.beginPath();
+            ctx.arc(110, 110, 55, 0, Math.PI * 2);
+            ctx.fill();
+            ctx.lineWidth = 3;
+            ctx.strokeStyle = '#8b183a';
+            ctx.stroke();
+
+            // Orelhinhas por Espécie
+            if(pet.species === 'Neko' || pet.species === 'Kitsune') {
+                ctx.beginPath();
+                ctx.moveTo(70, 70); ctx.lineTo(60, 30); ctx.lineTo(95, 60);
+                ctx.moveTo(150, 70); ctx.lineTo(160, 30); ctx.lineTo(125, 60);
+                ctx.fillStyle = pet.color; ctx.fill(); ctx.stroke();
+            } else if(pet.species === 'Usagi') {
+                ctx.beginPath();
+                ctx.ellipse(90, 35, 12, 35, -0.2, 0, Math.PI * 2);
+                ctx.ellipse(130, 35, 12, 35, 0.2, 0, Math.PI * 2);
+                ctx.fillStyle = pet.color; ctx.fill(); ctx.stroke();
+            }
+
+            // Acessórios
+            if(pet.accessory === 'crown') {
+                ctx.fillStyle = '#ffd700';
+                ctx.beginPath();
+                ctx.moveTo(85, 55); ctx.lineTo(95, 35); ctx.lineTo(110, 50); ctx.lineTo(125, 35); ctx.lineTo(135, 55);
+                ctx.closePath(); ctx.fill(); ctx.stroke();
+            } else if(pet.accessory === 'bow') {
+                ctx.fillStyle = '#ff547d';
+                ctx.beginPath();
+                ctx.arc(140, 60, 10, 0, Math.PI * 2);
+                ctx.arc(160, 60, 10, 0, Math.PI * 2);
+                ctx.fill(); ctx.stroke();
+            } else if(pet.accessory === 'glasses') {
+                ctx.fillStyle = '#1a1a1a';
+                ctx.fillRect(80, 95, 25, 15);
+                ctx.fillRect(115, 95, 25, 15);
+                ctx.fillRect(105, 100, 10, 4);
+            }
+
+            // Rosto
+            if(pet.sleeping) {
+                ctx.strokeStyle = '#4a343a'; ctx.lineWidth = 3;
+                ctx.beginPath();
+                ctx.moveTo(90, 110); ctx.lineTo(100, 110);
+                ctx.moveTo(120, 110); ctx.lineTo(130, 110);
+                ctx.stroke();
+            } else {
+                ctx.fillStyle = '#4a343a';
+                ctx.beginPath();
+                ctx.arc(95, 105, 6, 0, Math.PI * 2);
+                ctx.arc(125, 105, 6, 0, Math.PI * 2);
+                ctx.fill();
+
+                ctx.fillStyle = '#ffffff';
+                ctx.beginPath();
+                ctx.arc(97, 103, 2, 0, Math.PI * 2);
+                ctx.arc(127, 103, 2, 0, Math.PI * 2);
+                ctx.fill();
+
+                ctx.fillStyle = 'rgba(255, 100, 130, 0.4)';
+                ctx.beginPath();
+                ctx.arc(85, 120, 8, 0, Math.PI * 2);
+                ctx.arc(135, 120, 8, 0, Math.PI * 2);
+                ctx.fill();
+
+                ctx.beginPath();
+                ctx.arc(110, 118, 8, 0, Math.PI, false);
+                ctx.strokeStyle = '#4a343a'; ctx.lineWidth = 2.5;
+                ctx.stroke();
+            }
+        }
+
+        // Ações de Cuidados
+        function feedPet() {
+            const pet = getActivePet();
+            if(pet.sleeping) { showSpeech("Zzz... Deixe-me dormir!"); return; }
+            pet.fome = Math.min(100, pet.fome + 25);
+            pet.felicidade = Math.min(100, pet.felicidade + 10);
+            showSpeech("Nham nham! Delícia! 🍡");
+            saveGame(); drawPet();
         }
 
         function playPet() {
-            if (petState.isSleeping) {
-                speech.textContent = '"Zzz... ele está a dormir agora!"';
-                return;
-            }
-            if (petState.energy < 20) {
-                speech.textContent = '"Demasiado cansado para brincar..." 😴';
-                return;
-            }
-            petState.happiness += 25;
-            petState.hunger -= 10;
-            petState.energy -= 15;
-            avatar.textContent = '😻';
-            speech.textContent = '"Que divertido! Adoro brincar contigo!" 🧶';
-            updateUI();
+            const pet = getActivePet();
+            if(pet.sleeping) { showSpeech("Zzz..."); return; }
+            pet.felicidade = Math.min(100, pet.felicidade + 25);
+            pet.energia = Math.max(0, pet.energia - 15);
+            gameState.coins += 10;
+            showSpeech("Yaaay! Muito divertido! 🎾 (+10 🌸)");
+            saveGame(); drawPet();
         }
 
         function sleepPet() {
-            petState.isSleeping = !petState.isSleeping;
-            if (petState.isSleeping) {
-                petState.energy += 30;
-            }
-            updateUI();
-        }
-
-        function resetPet() {
-            petState = { hunger: 100, happiness: 100, energy: 100, isSleeping: false };
-            speech.textContent = '"Olá! Sou o teu novo bichinho!" 🌸';
-            updateUI();
-        }
-
-        // Loop de redução com o tempo (a cada 4 segundos diminui um pouco)
-        setInterval(() => {
-            if (petState.isSleeping) {
-                petState.energy += 10;
-                if (petState.energy >= 100) petState.isSleeping = false;
+            const pet = getActivePet();
+            pet.sleeping = !pet.sleeping;
+            if(!pet.sleeping) {
+                pet.energia = 100;
+                showSpeech("Bom dia! Descansado! ✨");
             } else {
-                petState.hunger -= 3;
-                petState.happiness -= 2;
-                petState.energy -= 1;
+                showSpeech("Boa noite... Zzz 🌙");
             }
-            updateUI();
-        }, 4000);
+            saveGame(); drawPet();
+        }
 
-        // Inicializa a UI
-        updateUI();
+        function cleanPet() {
+            const pet = getActivePet();
+            pet.higiene = 100;
+            pet.felicidade = Math.min(100, pet.felicidade + 10);
+            showSpeech("Cheirinho de sakura limpinho! 🧼✨");
+            saveGame(); drawPet();
+        }
+
+        function petTapReaction() {
+            const pet = getActivePet();
+            pet.felicidade = Math.min(100, pet.felicidade + 5);
+            showSpeech("Mew! 💖 Te amo!");
+            saveGame();
+        }
+
+        function showSpeech(text) {
+            const bubble = document.getElementById('speech-bubble');
+            bubble.textContent = text;
+            setTimeout(() => { bubble.textContent = "Oie! Vamos brincar? 🌸"; }, 3000);
+        }
+
+        // Lojinha & Abas
+        function openShopModal() { 
+            document.getElementById('shop-modal').classList.remove('hidden'); 
+            document.getElementById('shop-modal').classList.add('flex'); 
+        }
+        function closeShopModal() { 
+            document.getElementById('shop-modal').classList.add('hidden'); 
+            document.getElementById('shop-modal').classList.remove('flex'); 
+        }
+
+        function switchShopTab(tab) {
+            document.getElementById('shop-content-gacha').classList.add('hidden');
+            document.getElementById('shop-content-food').classList.add('hidden');
+            document.getElementById('shop-content-acc').classList.add('hidden');
+
+            document.getElementById('tab-gacha').className = "px-3 py-1.5 rounded-xl glass-card text-sakura-900";
+            document.getElementById('tab-food').className = "px-3 py-1.5 rounded-xl glass-card text-sakura-900";
+            document.getElementById('tab-acc').className = "px-3 py-1.5 rounded-xl glass-card text-sakura-900";
+
+            if(tab === 'gacha') {
+                document.getElementById('shop-content-gacha').classList.remove('hidden');
+                document.getElementById('tab-gacha').className = "px-3 py-1.5 rounded-xl bg-sakura-500 text-white";
+            } else if(tab === 'food') {
+                document.getElementById('shop-content-food').classList.remove('hidden');
+                document.getElementById('tab-food').className = "px-3 py-1.5 rounded-xl bg-sakura-500 text-white";
+            } else if(tab === 'acc') {
+                document.getElementById('shop-content-acc').classList.remove('hidden');
+                document.getElementById('tab-acc').className = "px-3 py-1.5 rounded-xl bg-sakura-500 text-white";
+            }
+        }
+
+        function buyEgg() {
+            if(gameState.coins < 1000) {
+                showToast("Você precisa de 1.000 🌸 SakuraCoins para comprar um Ovo!", "❌");
+                return;
+            }
+            gameState.coins -= 1000;
+            gameState.eggs = (gameState.eggs || 0) + 1;
+            saveGame();
+            showToast("Você comprou +1 Ovo Gacha! 🥚", "🎉");
+        }
+
+        function buyFood(item, cost, hungryRestore) {
+            if(gameState.coins < cost) {
+                showToast("Moedas insuficientes!", "❌");
+                return;
+            }
+            gameState.coins -= cost;
+            const pet = getActivePet();
+            pet.fome = Math.min(100, pet.fome + hungryRestore);
+            saveGame(); drawPet();
+            showToast("Item comprado com sucesso!", "🍡");
+        }
+
+        function buyAccessory(accKey, cost) {
+            if(gameState.coins < cost) {
+                showToast("Moedas insuficientes!", "❌");
+                return;
+            }
+            const pet = getActivePet();
+            if(!pet.accessoriesOwned) pet.accessoriesOwned = [];
+            if(pet.accessoriesOwned.includes(accKey)) {
+                pet.accessory = accKey;
+                showToast("Acessório equipado!", "🎀");
+            } else {
+                gameState.coins -= cost;
+                pet.accessoriesOwned.push(accKey);
+                pet.accessory = accKey;
+                showToast("Acessório comprado e equipado!", "✨");
+            }
+            saveGame(); drawPet();
+        }
+
+        // Modal de Gacha / Incubadora
+        function openEggGachaModal() { 
+            document.getElementById('modal-egg-count').textContent = gameState.eggs || 0;
+            document.getElementById('egg-modal').classList.remove('hidden'); 
+            document.getElementById('egg-modal').classList.add('flex'); 
+        }
+        function closeEggGachaModal() { 
+            document.getElementById('egg-modal').classList.add('hidden'); 
+            document.getElementById('egg-modal').classList.remove('flex'); 
+        }
+
+        function hatchEgg() {
+            if(!gameState.eggs || gameState.eggs <= 0) {
+                showToast("Você não possui Ovos! Compre na Lojinha por 1.000 🌸", "🥚");
+                return;
+            }
+            gameState.eggs -= 1;
+
+            const newPet = createRandomPet();
+            gameState.pets.push(newPet);
+            lastHatchedPetId = newPet.id;
+            saveGame();
+
+            document.getElementById('egg-container').classList.add('hidden');
+            const res = document.getElementById('hatch-result');
+            res.classList.remove('hidden');
+            document.getElementById('result-icon').textContent = newPet.emoji;
+            document.getElementById('result-title').textContent = `Você chocou um ${newPet.name}!`;
+            document.getElementById('result-desc').textContent = `Raridade: ${newPet.rarity} | Espécie: ${newPet.species}`;
+        }
+
+        function setActiveFromHatch() {
+            if(lastHatchedPetId) {
+                gameState.activePetId = lastHatchedPetId;
+                saveGame();
+                drawPet();
+                showToast("Novo Pet equipado!", "💖");
+            }
+            closeEggGachaModal();
+            resetEggBox();
+        }
+
+        function resetEggBox() {
+            document.getElementById('egg-container').classList.remove('hidden');
+            document.getElementById('hatch-result').classList.add('hidden');
+            document.getElementById('modal-egg-count').textContent = gameState.eggs || 0;
+        }
+
+        // Coleção
+        function openCollectionModal() {
+            const grid = document.getElementById('pets-grid');
+            grid.innerHTML = '';
+            gameState.pets.forEach(pet => {
+                const isSelected = pet.id === gameState.activePetId;
+                const card = document.createElement('div');
+                card.className = `p-3 rounded-2xl glass-card text-center cursor-pointer border ${isSelected ? 'border-sakura-500 bg-sakura-50 shadow-md' : 'border-sakura-200'} hover:scale-105 transition-all`;
+                card.innerHTML = `
+                    <div class="text-3xl mb-1">${pet.emoji}</div>
+                    <h5 class="font-bold text-sakura-900 text-xs truncate">${pet.name}</h5>
+                    <p class="text-[10px] text-sakura-700 font-mono">${pet.rarity}</p>
+                    ${isSelected ? '<span class="text-[9px] bg-sakura-500 text-white px-2 py-0.5 rounded-full font-bold mt-1 inline-block">Ativo</span>' : ''}
+                `;
+                card.onclick = () => {
+                    gameState.activePetId = pet.id;
+                    saveGame();
+                    closeCollectionModal();
+                    drawPet();
+                    showToast(`Pet ativo trocado para ${pet.name}!`, "🌸");
+                };
+                grid.appendChild(card);
+            });
+            document.getElementById('collection-modal').classList.remove('hidden');
+            document.getElementById('collection-modal').classList.add('flex');
+        }
+        function closeCollectionModal() { 
+            document.getElementById('collection-modal').classList.add('hidden'); 
+            document.getElementById('collection-modal').classList.remove('flex'); 
+        }
+
+        // Minigames
+        function openMinigamesModal() { 
+            document.getElementById('minigames-modal').classList.remove('hidden'); 
+            document.getElementById('minigames-modal').classList.add('flex'); 
+        }
+        function closeMinigamesModal() { 
+            document.getElementById('minigames-modal').classList.add('hidden'); 
+            document.getElementById('minigames-modal').classList.remove('flex'); 
+        }
+
+        function playMiniGame(type) {
+            if(type === 'catch') {
+                gameState.coins += 30;
+                showToast("Você ganhou +30 SakuraCoins nas Pétalas!", "🌸");
+            } else if(type === 'memory') {
+                gameState.coins += 40;
+                showToast("Você ganhou +40 SakuraCoins na Memória!", "🍡");
+            }
+            const pet = getActivePet();
+            pet.felicidade = Math.min(100, pet.felicidade + 15);
+            saveGame(); drawPet();
+            closeMinigamesModal();
+        }
+
+        // Loop de Inicialização
+        window.onload = () => {
+            saveGame();
+            drawPet();
+        };
     </script>
 </body>
 </html>
