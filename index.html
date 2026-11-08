@@ -44,7 +44,7 @@
         /* O GIF animado fica no fundo de tela inteiro do site */
         body {
             font-family: 'Quicksand', sans-serif;
-            background: linear-gradient(rgba(0, 0, 0, 0.25), rgba(0, 0, 0, 0.25)), url('download.gif');
+            background: linear-gradient(rgba(0, 0, 0, 0.35), rgba(0, 0, 0, 0.35)), url('download.gif');
             background-size: cover;
             background-position: center;
             background-attachment: fixed;
@@ -56,7 +56,7 @@
 
         /* A imagem original de sakura fica exclusivamente na barra rosa do topo */
         .glass-nav {
-            background: linear-gradient(rgba(255, 227, 232, 0.85), rgba(255, 227, 232, 0.85)), url('7 Sem Título_20261108005507.png');
+            background: linear-gradient(rgba(255, 227, 232, 0.88), rgba(255, 227, 232, 0.88)), url('7 Sem Título_20261108005507.png');
             background-size: cover;
             background-position: center;
             backdrop-filter: blur(14px);
@@ -66,7 +66,7 @@
 
         /* Glassmorphism Efeito para os Cards */
         .glass-card {
-            background: rgba(255, 255, 255, 0.85);
+            background: rgba(255, 255, 255, 0.88);
             backdrop-filter: blur(12px);
             -webkit-backdrop-filter: blur(12px);
             border: 1px solid rgba(255, 183, 202, 0.4);
@@ -75,7 +75,7 @@
 
         /* Custom Scrollbar */
         ::-webkit-scrollbar {
-            width: 8px;
+            width: 6px;
         }
         ::-webkit-scrollbar-track {
             background: rgba(255, 227, 232, 0.5);
@@ -95,15 +95,15 @@
     <header class="fixed top-0 left-0 w-full z-50 glass-nav transition-all duration-300">
         <div class="max-w-6xl mx-auto px-4 sm:px-6 h-20 flex items-center justify-between relative z-10">
             <!-- Logo -->
-            <a href="#" class="flex items-center gap-3 group">
-                <div class="w-11 h-11 rounded-2xl bg-gradient-to-tr from-sakura-400 to-sakura-300 flex items-center justify-center text-white text-xl shadow-md group-hover:rotate-12 transition-transform duration-300">
+            <a href="#" class="flex items-center gap-2.5 sm:gap-3 group">
+                <div class="w-10 h-10 sm:w-11 sm:h-11 rounded-2xl bg-gradient-to-tr from-sakura-400 to-sakura-300 flex items-center justify-center text-white text-lg sm:text-xl shadow-md group-hover:rotate-12 transition-transform duration-300">
                     🌸
                 </div>
                 <div class="flex flex-col">
-                    <span class="font-['Comfortaa'] font-bold text-lg sm:text-xl text-sakura-900 tracking-tight">
+                    <span class="font-['Comfortaa'] font-bold text-base sm:text-xl text-sakura-900 tracking-tight">
                         Casinha do <span class="text-sakura-500">Ayzin</span>
                     </span>
-                    <span class="text-[10px] text-sakura-700 font-mono">- mini projetos & diversão -</span>
+                    <span class="text-[9px] sm:text-[10px] text-sakura-700 font-mono">- mini projetos & diversão -</span>
                 </div>
             </a>
 
@@ -121,18 +121,18 @@
             </nav>
 
             <!-- Mobile Menu Button -->
-            <button id="mobile-menu-btn" class="md:hidden text-sakura-900 hover:text-sakura-500 text-2xl p-2 focus:outline-none">
+            <button id="mobile-menu-btn" aria-label="Abrir menu" class="md:hidden text-sakura-900 hover:text-sakura-500 text-2xl p-2 focus:outline-none cursor-pointer">
                 <i class="fa-solid fa-bars-staggered"></i>
             </button>
         </div>
 
         <!-- Mobile Menu Dropdown -->
-        <div id="mobile-menu" class="hidden md:hidden glass-card mx-4 my-2 rounded-2xl p-5 space-y-3 font-semibold text-center text-sakura-900">
-            <a href="#inicio" class="block py-2 border-b border-sakura-200/50 hover:text-sakura-500">Início</a>
-            <a href="#projetos" class="block py-2 border-b border-sakura-200/50 hover:text-sakura-500">Meus Projetos</a>
-            <a href="amigos.html" class="block py-2 border-b border-sakura-200/50 hover:text-sakura-500 text-sakura-600 font-bold">Cantinho dos Amigos ✨</a>
-            <a href="#sobre" class="block py-2 border-b border-sakura-200/50 hover:text-sakura-500">Sobre Mim</a>
-            <a href="#contato" class="block py-2 text-sakura-500 font-bold">Contato ✨</a>
+        <div id="mobile-menu" class="hidden md:hidden glass-card mx-4 my-2 rounded-2xl p-4 space-y-3 font-semibold text-center text-sakura-900 shadow-xl border border-sakura-300">
+            <a href="#inicio" class="mobile-link block py-2 border-b border-sakura-200/50 hover:text-sakura-500">Início</a>
+            <a href="#projetos" class="mobile-link block py-2 border-b border-sakura-200/50 hover:text-sakura-500">Meus Projetos</a>
+            <a href="amigos.html" class="mobile-link block py-2 border-b border-sakura-200/50 text-sakura-600 font-bold">Cantinho dos Amigos ✨</a>
+            <a href="#sobre" class="mobile-link block py-2 border-b border-sakura-200/50 hover:text-sakura-500">Sobre Mim</a>
+            <a href="#contato" class="mobile-link block py-2 text-sakura-500 font-bold">Contato ✨</a>
         </div>
     </header>
 
@@ -140,44 +140,44 @@
     <main class="relative z-10 pt-24 flex-grow">
         
         <!-- Hero Section -->
-        <section id="inicio" class="max-w-6xl mx-auto px-4 sm:px-6 py-16 md:py-24 flex flex-col md:flex-row items-center gap-10">
+        <section id="inicio" class="max-w-6xl mx-auto px-4 sm:px-6 py-10 sm:py-16 md:py-24 flex flex-col md:flex-row items-center gap-8 sm:gap-10">
             <!-- Left Bio -->
-            <div class="flex-1 space-y-6 text-center md:text-left">
-                <div class="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-white/90 border border-sakura-300 text-sakura-700 text-xs font-semibold shadow-sm">
+            <div class="flex-1 space-y-4 sm:space-y-6 text-center md:text-left">
+                <div class="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-white/90 border border-sakura-300 text-sakura-700 text-xs font-semibold shadow-sm">
                     <span class="animate-bounce">🌸</span> Bem-vindo(a) ao meu cantinho!
                 </div>
                 
-                <h1 class="text-3xl sm:text-5xl lg:text-6xl font-['Comfortaa'] font-extrabold text-white drop-shadow-md leading-tight">
+                <h1 class="text-2xl sm:text-4xl lg:text-6xl font-['Comfortaa'] font-extrabold text-white drop-shadow-md leading-tight">
                     Oi! Eu sou o <span class="bg-gradient-to-r from-sakura-300 via-pink-300 to-sakura-400 bg-clip-text text-transparent">Ayzin</span> 🍡
                 </h1>
                 
-                <p class="text-white/95 text-base sm:text-lg max-w-xl leading-relaxed drop-shadow">
+                <p class="text-white/95 text-sm sm:text-lg max-w-xl leading-relaxed drop-shadow">
                     Aqui é a minha casinha na web onde guardo meus experimentos, sites fofos, mini-jogos e coisinhas que fiz simplesmente por <strong class="font-bold text-white">diversão</strong>! Sinta-se em casa. 🍃
                 </p>
 
                 <!-- Actions -->
-                <div class="flex flex-wrap items-center justify-center md:justify-start gap-4 pt-2 font-semibold text-sm">
-                    <a href="#projetos" class="px-6 py-3 rounded-2xl bg-sakura-500 text-white shadow-lg hover:bg-sakura-600 hover:shadow-sakura-300/50 hover:-translate-y-0.5 transition-all flex items-center gap-2">
+                <div class="flex flex-wrap items-center justify-center md:justify-start gap-3 sm:gap-4 pt-2 font-semibold text-xs sm:text-sm">
+                    <a href="#projetos" class="px-5 py-3 rounded-2xl bg-sakura-500 text-white shadow-lg hover:bg-sakura-600 hover:shadow-sakura-300/50 hover:-translate-y-0.5 transition-all flex items-center gap-2">
                         <i class="fa-solid fa-gamepad text-white"></i> Explorar Projetos
                     </a>
-                    <a href="amigos.html" class="px-6 py-3 rounded-2xl glass-card text-sakura-900 hover:bg-white transition-all flex items-center gap-2">
+                    <a href="amigos.html" class="px-5 py-3 rounded-2xl glass-card text-sakura-900 hover:bg-white transition-all flex items-center gap-2">
                         <span>Cantinho dos Amigos</span> 🤝
                     </a>
                 </div>
             </div>
 
             <!-- Right Visual Card / Avatar -->
-            <div class="w-full md:w-5/12 max-w-sm">
-                <div class="glass-card p-6 rounded-3xl text-center space-y-4 relative overflow-hidden group">
-                    <div class="w-32 h-32 mx-auto rounded-full bg-gradient-to-tr from-sakura-300 to-sakura-200 p-1 shadow-inner relative">
-                        <div class="w-full h-full rounded-full bg-white flex items-center justify-center text-5xl">
+            <div class="w-full md:w-5/12 max-w-xs sm:max-w-sm">
+                <div class="glass-card p-5 sm:p-6 rounded-3xl text-center space-y-4 relative overflow-hidden group">
+                    <div class="w-28 h-28 sm:w-32 sm:h-32 mx-auto rounded-full bg-gradient-to-tr from-sakura-300 to-sakura-200 p-1 shadow-inner relative">
+                        <div class="w-full h-full rounded-full bg-white flex items-center justify-center text-4xl sm:text-5xl">
                             🐱
                         </div>
-                        <span class="absolute bottom-1 right-1 bg-green-400 border-2 border-white w-5 h-5 rounded-full" title="Online codando"></span>
+                        <span class="absolute bottom-1 right-1 bg-green-400 border-2 border-white w-4 h-4 sm:w-5 sm:h-5 rounded-full" title="Online codando"></span>
                     </div>
 
                     <div>
-                        <h3 class="font-['Comfortaa'] font-bold text-xl text-sakura-900">Ayzin</h3>
+                        <h3 class="font-['Comfortaa'] font-bold text-lg sm:text-xl text-sakura-900">Ayzin</h3>
                         <p class="text-xs text-sakura-700 font-mono">@ayzin_dev</p>
                     </div>
 
@@ -190,44 +190,44 @@
         </section>
 
         <!-- Projects Gallery -->
-        <section id="projetos" class="max-w-6xl mx-auto px-4 sm:px-6 py-16">
-            <div class="text-center max-w-2xl mx-auto mb-10 space-y-2">
+        <section id="projetos" class="max-w-6xl mx-auto px-4 sm:px-6 py-12 sm:py-16">
+            <div class="text-center max-w-2xl mx-auto mb-8 sm:mb-10 space-y-2">
                 <span class="text-xs font-mono uppercase tracking-widest text-sakura-200 font-bold drop-shadow">// GALERIA DE SITES</span>
-                <h2 class="text-3xl font-['Comfortaa'] font-bold text-white drop-shadow">Sites criados por mim ✨</h2>
-                <p class="text-sm text-white/90 drop-shadow">Projetos web feitos por pura diversão, aprendizado e criatividade!</p>
+                <h2 class="text-2xl sm:text-3xl font-['Comfortaa'] font-bold text-white drop-shadow">Sites criados por mim ✨</h2>
+                <p class="text-xs sm:text-sm text-white/90 drop-shadow">Projetos web feitos por pura diversão, aprendizado e criatividade!</p>
             </div>
 
             <!-- Category Filter Buttons -->
-            <div id="filter-buttons" class="flex flex-wrap justify-center gap-2 mb-10 font-semibold text-xs">
-                <button data-filter="all" class="filter-btn px-4 py-2 rounded-full bg-sakura-500 text-white shadow-sm transition-all">
+            <div id="filter-buttons" class="flex flex-wrap justify-center gap-2 mb-8 sm:mb-10 font-semibold text-xs">
+                <button data-filter="all" class="filter-btn px-3.5 py-2 rounded-full bg-sakura-500 text-white shadow-sm transition-all cursor-pointer">
                     🌸 Todos os Sites
                 </button>
-                <button data-filter="hobby" class="filter-btn px-4 py-2 rounded-full glass-card text-sakura-900 hover:bg-white transition-all">
+                <button data-filter="hobby" class="filter-btn px-3.5 py-2 rounded-full glass-card text-sakura-900 hover:bg-white transition-all cursor-pointer">
                     🎨 Hobbies & Mini-Jogos
                 </button>
-                <button data-filter="webapps" class="filter-btn px-4 py-2 rounded-full glass-card text-sakura-900 hover:bg-white transition-all">
+                <button data-filter="webapps" class="filter-btn px-3.5 py-2 rounded-full glass-card text-sakura-900 hover:bg-white transition-all cursor-pointer">
                     💻 Web Apps & Ferramentas
                 </button>
             </div>
 
             <!-- Projects Grid -->
-            <div id="projects-grid" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+            <div id="projects-grid" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5 sm:gap-6">
                 
                 <!-- Card 1: Kaomoji Neko -->
                 <div class="project-card glass-card rounded-3xl overflow-hidden flex flex-col group hover:-translate-y-1.5 transition-all duration-300" data-category="hobby">
-                    <div class="relative overflow-hidden h-44 bg-sakura-100">
+                    <div class="relative overflow-hidden h-40 sm:h-44 bg-sakura-100">
                         <img src="https://placehold.co/600x400/ffdbe4/8b183a?text=Kaomoji+Neko+🐾" alt="Gerador de Kaomoji Neko" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500">
-                        <span class="absolute top-3 right-3 text-[10px] font-mono px-3 py-1 rounded-full bg-white/90 text-sakura-700 font-bold shadow-sm">
+                        <span class="absolute top-3 right-3 text-[10px] font-mono px-2.5 py-1 rounded-full bg-white/90 text-sakura-700 font-bold shadow-sm">
                             🎨 Hobby
                         </span>
                     </div>
-                    <div class="p-5 flex-1 flex flex-col justify-between space-y-3">
+                    <div class="p-4 sm:p-5 flex-1 flex flex-col justify-between space-y-3">
                         <div>
-                            <h3 class="text-lg font-['Comfortaa'] font-bold text-sakura-900 group-hover:text-sakura-500 transition-colors">Gerador de Kaomoji Neko</h3>
+                            <h3 class="text-base sm:text-lg font-['Comfortaa'] font-bold text-sakura-900 group-hover:text-sakura-500 transition-colors">Gerador de Kaomoji Neko</h3>
                             <p class="text-sakura-800/80 text-xs mt-1.5 line-clamp-2 leading-relaxed">Sitezinho fofo que gera emoticons japoneses aleatórios de gatinhos para copiar com um clique.</p>
                         </div>
                         <div class="space-y-3 pt-2">
-                            <div class="flex flex-wrap gap-1 font-mono text-[11px]">
+                            <div class="flex flex-wrap gap-1 font-mono text-[10px] sm:text-[11px]">
                                 <span class="px-2 py-0.5 rounded-md bg-sakura-200/60 text-sakura-900">HTML</span>
                                 <span class="px-2 py-0.5 rounded-md bg-sakura-200/60 text-sakura-900">CSS</span>
                                 <span class="px-2 py-0.5 rounded-md bg-sakura-200/60 text-sakura-900">JS</span>
@@ -246,19 +246,19 @@
 
                 <!-- Card 2: Mini Tamagotchi Web -->
                 <div class="project-card glass-card rounded-3xl overflow-hidden flex flex-col group hover:-translate-y-1.5 transition-all duration-300" data-category="hobby">
-                    <div class="relative overflow-hidden h-44 bg-sakura-100">
+                    <div class="relative overflow-hidden h-40 sm:h-44 bg-sakura-100">
                         <img src="https://placehold.co/600x400/ffdbe4/8b183a?text=Tamagotchi+Web+👾" alt="Mini Tamagotchi Web" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500">
-                        <span class="absolute top-3 right-3 text-[10px] font-mono px-3 py-1 rounded-full bg-white/90 text-sakura-700 font-bold shadow-sm">
+                        <span class="absolute top-3 right-3 text-[10px] font-mono px-2.5 py-1 rounded-full bg-white/90 text-sakura-700 font-bold shadow-sm">
                             🎨 Hobby
                         </span>
                     </div>
-                    <div class="p-5 flex-1 flex flex-col justify-between space-y-3">
+                    <div class="p-4 sm:p-5 flex-1 flex flex-col justify-between space-y-3">
                         <div>
-                            <h3 class="text-lg font-['Comfortaa'] font-bold text-sakura-900 group-hover:text-sakura-500 transition-colors">Mini Tamagotchi Web</h3>
+                            <h3 class="text-base sm:text-lg font-['Comfortaa'] font-bold text-sakura-900 group-hover:text-sakura-500 transition-colors">Mini Tamagotchi Web</h3>
                             <p class="text-sakura-800/80 text-xs mt-1.5 line-clamp-2 leading-relaxed">Jogo de bichinho virtual direto no navegador feito para passar o tempo num fim de tarde.</p>
                         </div>
                         <div class="space-y-3 pt-2">
-                            <div class="flex flex-wrap gap-1 font-mono text-[11px]">
+                            <div class="flex flex-wrap gap-1 font-mono text-[10px] sm:text-[11px]">
                                 <span class="px-2 py-0.5 rounded-md bg-sakura-200/60 text-sakura-900">Canvas JS</span>
                                 <span class="px-2 py-0.5 rounded-md bg-sakura-200/60 text-sakura-900">CSS Grid</span>
                             </div>
@@ -276,19 +276,19 @@
 
                 <!-- Card 3: Sakura Colors Picker -->
                 <div class="project-card glass-card rounded-3xl overflow-hidden flex flex-col group hover:-translate-y-1.5 transition-all duration-300" data-category="webapps">
-                    <div class="relative overflow-hidden h-44 bg-sakura-100">
+                    <div class="relative overflow-hidden h-40 sm:h-44 bg-sakura-100">
                         <img src="https://placehold.co/600x400/ffdbe4/8b183a?text=Sakura+Colors+🎨" alt="Paleta Sakura Picker" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500">
-                        <span class="absolute top-3 right-3 text-[10px] font-mono px-3 py-1 rounded-full bg-white/90 text-sakura-700 font-bold shadow-sm">
+                        <span class="absolute top-3 right-3 text-[10px] font-mono px-2.5 py-1 rounded-full bg-white/90 text-sakura-700 font-bold shadow-sm">
                             💻 Web App
                         </span>
                     </div>
-                    <div class="p-5 flex-1 flex flex-col justify-between space-y-3">
+                    <div class="p-4 sm:p-5 flex-1 flex flex-col justify-between space-y-3">
                         <div>
-                            <h3 class="text-lg font-['Comfortaa'] font-bold text-sakura-900 group-hover:text-sakura-500 transition-colors">Paleta Sakura Picker</h3>
+                            <h3 class="text-base sm:text-lg font-['Comfortaa'] font-bold text-sakura-900 group-hover:text-sakura-500 transition-colors">Paleta Sakura Picker</h3>
                             <p class="text-sakura-800/80 text-xs mt-1.5 line-clamp-2 leading-relaxed">Ferramenta leve para extrair e gerar combinadores de cores suaves em pastel e estética aesthetic.</p>
                         </div>
                         <div class="space-y-3 pt-2">
-                            <div class="flex flex-wrap gap-1 font-mono text-[11px]">
+                            <div class="flex flex-wrap gap-1 font-mono text-[10px] sm:text-[11px]">
                                 <span class="px-2 py-0.5 rounded-md bg-sakura-200/60 text-sakura-900">Web App</span>
                                 <span class="px-2 py-0.5 rounded-md bg-sakura-200/60 text-sakura-900">Colors</span>
                             </div>
@@ -306,19 +306,19 @@
 
                 <!-- Card 4: Bento Box Notes -->
                 <div class="project-card glass-card rounded-3xl overflow-hidden flex flex-col group hover:-translate-y-1.5 transition-all duration-300" data-category="webapps">
-                    <div class="relative overflow-hidden h-44 bg-sakura-100">
+                    <div class="relative overflow-hidden h-40 sm:h-44 bg-sakura-100">
                         <img src="https://placehold.co/600x400/ffdbe4/8b183a?text=Bento+Notes+🍱" alt="Bento Box Notes" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500">
-                        <span class="absolute top-3 right-3 text-[10px] font-mono px-3 py-1 rounded-full bg-white/90 text-sakura-700 font-bold shadow-sm">
+                        <span class="absolute top-3 right-3 text-[10px] font-mono px-2.5 py-1 rounded-full bg-white/90 text-sakura-700 font-bold shadow-sm">
                             💻 Web App
                         </span>
                     </div>
-                    <div class="p-5 flex-1 flex flex-col justify-between space-y-3">
+                    <div class="p-4 sm:p-5 flex-1 flex flex-col justify-between space-y-3">
                         <div>
-                            <h3 class="text-lg font-['Comfortaa'] font-bold text-sakura-900 group-hover:text-sakura-500 transition-colors">Bento Box Notes</h3>
+                            <h3 class="text-base sm:text-lg font-['Comfortaa'] font-bold text-sakura-900 group-hover:text-sakura-500 transition-colors">Bento Box Notes</h3>
                             <p class="text-sakura-800/80 text-xs mt-1.5 line-clamp-2 leading-relaxed">Um app web minimalista no estilo de marmita japonesa para organizar pequenas anotações diárias.</p>
                         </div>
                         <div class="space-y-3 pt-2">
-                            <div class="flex flex-wrap gap-1 font-mono text-[11px]">
+                            <div class="flex flex-wrap gap-1 font-mono text-[10px] sm:text-[11px]">
                                 <span class="px-2 py-0.5 rounded-md bg-sakura-200/60 text-sakura-900">LocalStorage</span>
                                 <span class="px-2 py-0.5 rounded-md bg-sakura-200/60 text-sakura-900">Tailwind</span>
                             </div>
@@ -326,7 +326,7 @@
                                 <button onclick="openModal(4)" class="text-sakura-700 hover:text-sakura-500 transition-colors flex items-center gap-1 cursor-pointer">
                                     <i class="fa-solid fa-wand-magic-sparkles text-sakura-400"></i> Detalhes
                                 </button>
-                                <a href="#" target="_blank" class="text-sakura-500 hover:underline flex items-center gap-1">
+                                <a href="bento-notes.html" class="text-sakura-500 hover:underline flex items-center gap-1 font-bold">
                                     Ver Site <i class="fa-solid fa-chevron-right text-[10px]"></i>
                                 </a>
                             </div>
@@ -336,19 +336,19 @@
 
                 <!-- Card 5: Sites feito para meus amigos (Leva para amigos.html) -->
                 <div class="project-card glass-card rounded-3xl overflow-hidden flex flex-col group hover:-translate-y-1.5 transition-all duration-300" data-category="webapps">
-                    <div class="relative overflow-hidden h-44 bg-sakura-100">
+                    <div class="relative overflow-hidden h-40 sm:h-44 bg-sakura-100">
                         <img src="https://placehold.co/600x400/ffdbe4/8b183a?text=Sites+dos+Amigos+🤝" alt="Sites feito para meus amigos" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500">
-                        <span class="absolute top-3 right-3 text-[10px] font-mono px-3 py-1 rounded-full bg-white/90 text-sakura-700 font-bold shadow-sm">
+                        <span class="absolute top-3 right-3 text-[10px] font-mono px-2.5 py-1 rounded-full bg-white/90 text-sakura-700 font-bold shadow-sm">
                             ⭐ Especial
                         </span>
                     </div>
-                    <div class="p-5 flex-1 flex flex-col justify-between space-y-3">
+                    <div class="p-4 sm:p-5 flex-1 flex flex-col justify-between space-y-3">
                         <div>
-                            <h3 class="text-lg font-['Comfortaa'] font-bold text-sakura-900 group-hover:text-sakura-500 transition-colors">Sites feito para meus amigos</h3>
+                            <h3 class="text-base sm:text-lg font-['Comfortaa'] font-bold text-sakura-900 group-hover:text-sakura-500 transition-colors">Sites feito para meus amigos</h3>
                             <p class="text-sakura-800/80 text-xs mt-1.5 line-clamp-2 leading-relaxed">sites feito para meus amigos</p>
                         </div>
                         <div class="space-y-3 pt-2">
-                            <div class="flex flex-wrap gap-1 font-mono text-[11px]">
+                            <div class="flex flex-wrap gap-1 font-mono text-[10px] sm:text-[11px]">
                                 <span class="px-2 py-0.5 rounded-md bg-sakura-200/60 text-sakura-900">Amigos</span>
                                 <span class="px-2 py-0.5 rounded-md bg-sakura-200/60 text-sakura-900">Lojas</span>
                             </div>
@@ -366,19 +366,19 @@
 
                 <!-- Card 6: Jogo da Memória Retro -->
                 <div class="project-card glass-card rounded-3xl overflow-hidden flex flex-col group hover:-translate-y-1.5 transition-all duration-300" data-category="hobby">
-                    <div class="relative overflow-hidden h-44 bg-sakura-100">
+                    <div class="relative overflow-hidden h-40 sm:h-44 bg-sakura-100">
                         <img src="https://placehold.co/600x400/ffdbe4/8b183a?text=Jogo+da+Memoria+🌸" alt="Jogo da Memória Retro" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500">
-                        <span class="absolute top-3 right-3 text-[10px] font-mono px-3 py-1 rounded-full bg-white/90 text-sakura-700 font-bold shadow-sm">
+                        <span class="absolute top-3 right-3 text-[10px] font-mono px-2.5 py-1 rounded-full bg-white/90 text-sakura-700 font-bold shadow-sm">
                             🎨 Hobby
                         </span>
                     </div>
-                    <div class="p-5 flex-1 flex flex-col justify-between space-y-3">
+                    <div class="p-4 sm:p-5 flex-1 flex flex-col justify-between space-y-3">
                         <div>
-                            <h3 class="text-lg font-['Comfortaa'] font-bold text-sakura-900 group-hover:text-sakura-500 transition-colors">Jogo da Memória Retro</h3>
+                            <h3 class="text-base sm:text-lg font-['Comfortaa'] font-bold text-sakura-900 group-hover:text-sakura-500 transition-colors">Jogo da Memória Retro</h3>
                             <p class="text-sakura-800/80 text-xs mt-1.5 line-clamp-2 leading-relaxed">Joguinho de cartas interativo para testar a memória com temática pastel e doces japoneses.</p>
                         </div>
                         <div class="space-y-3 pt-2">
-                            <div class="flex flex-wrap gap-1 font-mono text-[11px]">
+                            <div class="flex flex-wrap gap-1 font-mono text-[10px] sm:text-[11px]">
                                 <span class="px-2 py-0.5 rounded-md bg-sakura-200/60 text-sakura-900">Game Loop</span>
                                 <span class="px-2 py-0.5 rounded-md bg-sakura-200/60 text-sakura-900">Animations</span>
                             </div>
@@ -398,33 +398,33 @@
         </section>
 
         <!-- About Me Section -->
-        <section id="sobre" class="max-w-6xl mx-auto px-4 sm:px-6 py-16">
-            <div class="glass-card rounded-3xl p-8 sm:p-12 relative overflow-hidden">
-                <div class="max-w-3xl mx-auto space-y-6">
+        <section id="sobre" class="max-w-6xl mx-auto px-4 sm:px-6 py-12 sm:py-16">
+            <div class="glass-card rounded-3xl p-6 sm:p-12 relative overflow-hidden">
+                <div class="max-w-3xl mx-auto space-y-4 sm:space-y-6">
                     <div class="inline-block px-3 py-1 rounded-full bg-sakura-200 text-sakura-900 font-mono text-xs font-semibold">
                         // sobre a casinha
                     </div>
-                    <h2 class="text-3xl font-['Comfortaa'] font-bold text-sakura-900">Por que criei esse espaço? 🍡</h2>
-                    <p class="text-sakura-900/90 leading-relaxed text-base">
+                    <h2 class="text-2xl sm:text-3xl font-['Comfortaa'] font-bold text-sakura-900">Por que criei esse espaço? 🍡</h2>
+                    <p class="text-sakura-900/90 leading-relaxed text-xs sm:text-base">
                         Adoro dar vida a ideias malucas na web e explorar novas tecnologias sem a pressão de criar algo engessado. A <strong class="font-bold text-sakura-900">Casinha do Ayzin</strong> é o meu laboratório pessoal e baú de memórias digitais, onde reúno cada mini-projeto, página estática e experimento de código que desenvolvi por puro entusiasmo e diversão!
                     </p>
 
                     <!-- Mini Badges -->
-                    <div class="grid grid-cols-2 sm:grid-cols-4 gap-4 pt-4 text-center font-semibold text-xs">
-                        <div class="p-4 rounded-2xl bg-white/80 border border-sakura-200">
-                            <span class="text-2xl block mb-1">⚡</span>
+                    <div class="grid grid-cols-2 sm:grid-cols-4 gap-3 sm:gap-4 pt-4 text-center font-semibold text-xs">
+                        <div class="p-3 sm:p-4 rounded-2xl bg-white/80 border border-sakura-200">
+                            <span class="text-xl sm:text-2xl block mb-1">⚡</span>
                             <span class="text-sakura-900">100% HTML & CSS</span>
                         </div>
-                        <div class="p-4 rounded-2xl bg-white/80 border border-sakura-200">
-                            <span class="text-2xl block mb-1">🍵</span>
+                        <div class="p-3 sm:p-4 rounded-2xl bg-white/80 border border-sakura-200">
+                            <span class="text-xl sm:text-2xl block mb-1">🍵</span>
                             <span class="text-sakura-900">Mover a Chá</span>
                         </div>
-                        <div class="p-4 rounded-2xl bg-white/80 border border-sakura-200">
-                            <span class="text-2xl block mb-1">🎀</span>
+                        <div class="p-3 sm:p-4 rounded-2xl bg-white/80 border border-sakura-200">
+                            <span class="text-xl sm:text-2xl block mb-1">🎀</span>
                             <span class="text-sakura-900">Design Fofo</span>
                         </div>
-                        <div class="p-4 rounded-2xl bg-white/80 border border-sakura-200">
-                            <span class="text-2xl block mb-1">🚀</span>
+                        <div class="p-3 sm:p-4 rounded-2xl bg-white/80 border border-sakura-200">
+                            <span class="text-xl sm:text-2xl block mb-1">🚀</span>
                             <span class="text-sakura-900">GitHub Pages</span>
                         </div>
                     </div>
@@ -433,21 +433,21 @@
         </section>
 
         <!-- Contact Section -->
-        <section id="contato" class="max-w-6xl mx-auto px-4 sm:px-6 py-16">
-            <div class="text-center max-w-xl mx-auto space-y-6">
-                <h2 class="text-3xl font-['Comfortaa'] font-bold text-white drop-shadow">Quer dar um oi? 💌</h2>
-                <p class="text-sm text-white/90 drop-shadow">
+        <section id="contato" class="max-w-6xl mx-auto px-4 sm:px-6 py-12 sm:py-16">
+            <div class="text-center max-w-xl mx-auto space-y-4 sm:space-y-6">
+                <h2 class="text-2xl sm:text-3xl font-['Comfortaa'] font-bold text-white drop-shadow">Quer dar um oi? 💌</h2>
+                <p class="text-xs sm:text-sm text-white/90 drop-shadow">
                     Se você gostou de algum site ou quer dar uma sugestão de projeto divertido para eu fazer, me manda uma mensagem!
                 </p>
 
-                <div class="flex flex-wrap justify-center gap-4 font-semibold text-sm">
-                    <a href="https://instagram.com" target="_blank" class="px-6 py-3 rounded-2xl glass-card text-sakura-900 hover:bg-white transition-all flex items-center gap-2">
-                        <i class="fa-brands fa-instagram text-lg text-sakura-600"></i> Instagram
+                <div class="flex flex-wrap justify-center gap-3 sm:gap-4 font-semibold text-xs sm:text-sm">
+                    <a href="https://instagram.com" target="_blank" class="px-5 py-3 rounded-2xl glass-card text-sakura-900 hover:bg-white transition-all flex items-center gap-2">
+                        <i class="fa-brands fa-instagram text-base sm:text-lg text-sakura-600"></i> Instagram
                     </a>
-                    <a href="https://discord.com" target="_blank" class="px-6 py-3 rounded-2xl glass-card text-sakura-900 hover:bg-white transition-all flex items-center gap-2">
-                        <i class="fa-brands fa-discord text-lg text-sakura-600"></i> Discord
+                    <a href="https://discord.com" target="_blank" class="px-5 py-3 rounded-2xl glass-card text-sakura-900 hover:bg-white transition-all flex items-center gap-2">
+                        <i class="fa-brands fa-discord text-base sm:text-lg text-sakura-600"></i> Discord
                     </a>
-                    <a href="mailto:seuemail@exemplo.com" class="px-6 py-3 rounded-2xl bg-sakura-500 text-white hover:bg-sakura-600 transition-all flex items-center gap-2 shadow-md">
+                    <a href="mailto:seuemail@exemplo.com" class="px-5 py-3 rounded-2xl bg-sakura-500 text-white hover:bg-sakura-600 transition-all flex items-center gap-2 shadow-md">
                         <i class="fa-solid fa-envelope"></i> E-mail
                     </a>
                 </div>
@@ -456,17 +456,17 @@
     </main>
 
     <!-- Modal de Detalhes do Projeto -->
-    <div id="project-modal" class="fixed inset-0 z-50 bg-sakura-900/50 backdrop-blur-sm hidden items-center justify-center p-4">
-        <div class="glass-card bg-white/95 border border-sakura-300 rounded-3xl max-w-lg w-full p-6 relative space-y-4 shadow-2xl animate-fade-in">
-            <button id="close-modal" class="absolute top-4 right-4 text-sakura-600 hover:text-sakura-900 text-xl w-8 h-8 rounded-full bg-sakura-100 flex items-center justify-center">
+    <div id="project-modal" class="fixed inset-0 z-50 bg-sakura-900/60 backdrop-blur-sm hidden items-center justify-center p-4">
+        <div class="glass-card bg-white/95 border border-sakura-300 rounded-3xl max-w-lg w-full p-5 sm:p-6 relative space-y-3 sm:space-y-4 shadow-2xl overflow-y-auto max-h-[90vh]">
+            <button id="close-modal" aria-label="Fechar" class="absolute top-4 right-4 text-sakura-600 hover:text-sakura-900 text-lg w-8 h-8 rounded-full bg-sakura-100 flex items-center justify-center cursor-pointer">
                 <i class="fa-solid fa-xmark"></i>
             </button>
-            <h3 id="modal-title" class="text-2xl font-['Comfortaa'] font-bold text-sakura-900"></h3>
-            <img id="modal-image" class="w-full h-48 object-cover rounded-2xl border border-sakura-200" src="" alt="">
-            <p id="modal-desc" class="text-sakura-800 text-sm leading-relaxed"></p>
-            <div id="modal-tags" class="flex flex-wrap gap-2 font-mono text-xs"></div>
-            <div class="flex justify-end gap-3 pt-4 border-t border-sakura-200 font-semibold text-sm">
-                <a id="modal-live-link" href="#" class="px-5 py-2.5 rounded-xl bg-sakura-500 text-white hover:bg-sakura-600 transition-all flex items-center gap-2">
+            <h3 id="modal-title" class="text-xl sm:text-2xl font-['Comfortaa'] font-bold text-sakura-900 pr-8"></h3>
+            <img id="modal-image" class="w-full h-40 sm:h-48 object-cover rounded-2xl border border-sakura-200" src="" alt="">
+            <p id="modal-desc" class="text-sakura-800 text-xs sm:text-sm leading-relaxed"></p>
+            <div id="modal-tags" class="flex flex-wrap gap-2 font-mono text-[10px] sm:text-xs"></div>
+            <div class="flex justify-end gap-3 pt-3 border-t border-sakura-200 font-semibold text-xs sm:text-sm">
+                <a id="modal-live-link" href="#" class="px-4 py-2.5 rounded-xl bg-sakura-500 text-white hover:bg-sakura-600 transition-all flex items-center gap-2 shadow">
                     <i class="fa-solid fa-arrow-up-right-from-square text-xs"></i> Abrir Projeto
                 </a>
             </div>
@@ -474,7 +474,7 @@
     </div>
 
     <!-- Footer -->
-    <footer class="relative z-10 border-t border-white/20 py-8 text-center text-xs text-white/90 font-medium drop-shadow">
+    <footer class="relative z-10 border-t border-white/20 py-6 sm:py-8 text-center text-[11px] sm:text-xs text-white/90 font-medium drop-shadow">
         <p>Feito com 🌸 e carinho por Ayzin • Hospedado no GitHub Pages</p>
     </footer>
 
@@ -511,7 +511,7 @@
                 image: "https://placehold.co/600x400/ffdbe4/8b183a?text=Bento+Notes+🍱",
                 description: "Um app web minimalista no estilo de marmita japonesa para organizar pequenas anotações diárias.",
                 tags: ["LocalStorage", "Tailwind"],
-                link: "#"
+                link: "bento-notes.html"
             },
             {
                 id: 5,
@@ -559,9 +559,26 @@
         // Toggle do Menu Mobile
         const mobileBtn = document.getElementById('mobile-menu-btn');
         const mobileMenu = document.getElementById('mobile-menu');
+        const mobileLinks = document.querySelectorAll('.mobile-link');
+
         if (mobileBtn && mobileMenu) {
-            mobileBtn.addEventListener('click', () => {
+            mobileBtn.addEventListener('click', (e) => {
+                e.stopPropagation();
                 mobileMenu.classList.toggle('hidden');
+            });
+
+            // Fecha o menu ao clicar num link
+            mobileLinks.forEach(link => {
+                link.addEventListener('click', () => {
+                    mobileMenu.classList.add('hidden');
+                });
+            });
+
+            // Fecha o menu ao clicar fora dele
+            document.addEventListener('click', (e) => {
+                if (!mobileMenu.contains(e.target) && !mobileBtn.contains(e.target)) {
+                    mobileMenu.classList.add('hidden');
+                }
             });
         }
 
@@ -584,26 +601,36 @@
             modalDesc.textContent = project.description;
             modalLiveLink.href = project.link;
 
+            // Se for link externo abre em nova aba, se for relativo abre na mesma aba
+            if (project.link.startsWith('http')) {
+                modalLiveLink.setAttribute('target', '_blank');
+            } else {
+                modalLiveLink.removeAttribute('target');
+            }
+
             modalTags.innerHTML = project.tags.map(t => 
-                `<span class="px-2.5 py-1 rounded-md bg-sakura-100 text-sakura-800 font-mono">${t}</span>`
+                `<span class="px-2 py-0.5 sm:px-2.5 sm:py-1 rounded-md bg-sakura-100 text-sakura-800 font-mono">${t}</span>`
             ).join('');
 
             modal.classList.remove('hidden');
             modal.classList.add('flex');
+            document.body.style.overflow = 'hidden';
+        }
+
+        function closeModal() {
+            modal.classList.add('hidden');
+            modal.classList.remove('flex');
+            document.body.style.overflow = 'auto';
         }
 
         if (closeModalBtn) {
-            closeModalBtn.addEventListener('click', () => {
-                modal.classList.add('hidden');
-                modal.classList.remove('flex');
-            });
+            closeModalBtn.addEventListener('click', closeModal);
         }
 
         if (modal) {
             modal.addEventListener('click', (e) => {
                 if (e.target === modal) {
-                    modal.classList.add('hidden');
-                    modal.classList.remove('flex');
+                    closeModal();
                 }
             });
         }
