@@ -43,8 +43,8 @@
     <style>
         body {
             font-family: 'Quicksand', sans-serif;
-            /* Fundo com a nova imagem de sakura e uma leve camada escura para destacar o texto */
-            background: linear-gradient(rgba(0, 0, 0, 0.15), rgba(0, 0, 0, 0.15)), url('fundo-sakura.png');
+            /* O GIF animado fica no fundo de tela inteiro */
+            background: linear-gradient(rgba(0, 0, 0, 0.25), rgba(0, 0, 0, 0.25)), url('download.gif');
             background-size: cover;
             background-position: center;
             background-attachment: fixed;
@@ -54,19 +54,23 @@
             position: relative;
         }
 
-        /* Glassmorphism Efeito */
+        /* A imagem de sakura fica aplicada especificamente na barra do topo */
+        .glass-nav {
+            background: linear-gradient(rgba(255, 240, 243, 0.75), rgba(255, 240, 243, 0.75)), url('fundo-sakura.png');
+            background-size: cover;
+            background-position: center;
+            backdrop-filter: blur(14px);
+            -webkit-backdrop-filter: blur(14px);
+            border-bottom: 1px solid rgba(255, 183, 202, 0.4);
+        }
+
+        /* Glassmorphism Efeito para os Cards */
         .glass-card {
             background: rgba(255, 255, 255, 0.85);
             backdrop-filter: blur(12px);
             -webkit-backdrop-filter: blur(12px);
             border: 1px solid rgba(255, 183, 202, 0.4);
             box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.15);
-        }
-
-        .glass-nav {
-            background: rgba(255, 240, 243, 0.9);
-            backdrop-filter: blur(14px);
-            border-bottom: 1px solid rgba(255, 183, 202, 0.3);
         }
 
         /* Custom Scrollbar */
@@ -99,22 +103,22 @@
                     <span class="font-['Comfortaa'] font-bold text-lg sm:text-xl text-sakura-900 tracking-tight">
                         Casinha do <span class="text-sakura-500">Ayzin</span>
                     </span>
-                    <span class="text-[10px] text-sakura-600 font-mono">- mini projetos & diversão -</span>
+                    <span class="text-[10px] text-sakura-700 font-mono">- mini projetos & diversão -</span>
                 </div>
             </a>
 
             <!-- Desktop Menu -->
-            <nav class="hidden md:flex items-center gap-6 font-semibold text-sm text-sakura-800">
+            <nav class="hidden md:flex items-center gap-6 font-semibold text-sm text-sakura-900">
                 <a href="#inicio" class="hover:text-sakura-500 transition-colors">Início</a>
                 <a href="#projetos" class="hover:text-sakura-500 transition-colors">Meus Projetos</a>
                 <a href="#sobre" class="hover:text-sakura-500 transition-colors">Sobre Mim</a>
-                <a href="#contato" class="px-4 py-2 rounded-full bg-sakura-400 text-white hover:bg-sakura-500 shadow-sm hover:shadow-md transition-all">
+                <a href="#contato" class="px-4 py-2 rounded-full bg-sakura-500 text-white hover:bg-sakura-600 shadow-sm hover:shadow-md transition-all">
                     Contato ✨
                 </a>
             </nav>
 
             <!-- Mobile Menu Button -->
-            <button id="mobile-menu-btn" class="md:hidden text-sakura-800 hover:text-sakura-500 text-2xl p-2 focus:outline-none">
+            <button id="mobile-menu-btn" class="md:hidden text-sakura-900 hover:text-sakura-500 text-2xl p-2 focus:outline-none">
                 <i class="fa-solid fa-bars-staggered"></i>
             </button>
         </div>
