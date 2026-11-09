@@ -3,11 +3,12 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Casinha do Ayzin 🌸</title>
+    <title>Casinha do Ayzin</title>
     <!-- Tailwind CSS CDN -->
     <script src="https://cdn.tailwindcss.com"></script>
     <script>
         tailwind.config = {
+            darkMode: 'class',
             theme: {
                 extend: {
                     colors: {
@@ -69,27 +70,25 @@
             -webkit-backdrop-filter: blur(12px);
             border: 1px solid rgba(255, 183, 202, 0.4);
             box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.15);
-            transition: background 0.5s ease, border 0.5s ease;
+            transition: background 0.5s ease, border 0.5s ease, color 0.5s ease;
         }
 
-        /* Modo Escuro Automático baseado no Sistema (Usa cozy-night.gif) */
-        @media (prefers-color-scheme: dark) {
-            body {
-                background-image: linear-gradient(rgba(15, 10, 20, 0.7), rgba(15, 10, 20, 0.7)), url('cozy-night.gif');
-                color: #fce7f0;
-            }
+        /* Modo Escuro (Ativado via classe .dark no HTML) */
+        .dark body {
+            background-image: linear-gradient(rgba(15, 10, 20, 0.7), rgba(15, 10, 20, 0.7)), url('cozy-night.gif');
+            color: #fce7f0;
+        }
 
-            .glass-card {
-                background: rgba(30, 20, 28, 0.80) !important;
-                border: 1px solid rgba(255, 183, 202, 0.2) !important;
-                box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.3) !important;
-                color: #fce7f0 !important;
-            }
+        .dark .glass-card {
+            background: rgba(30, 20, 28, 0.80) !important;
+            border: 1px solid rgba(255, 183, 202, 0.2) !important;
+            box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.3) !important;
+            color: #fce7f0 !important;
+        }
 
-            .glass-nav {
-                background: linear-gradient(rgba(25, 15, 22, 0.85), rgba(25, 15, 22, 0.85)), url('7 Sem Título_20261108005507.png') !important;
-                border-bottom: 1px solid rgba(255, 183, 202, 0.15);
-            }
+        .dark .glass-nav {
+            background: linear-gradient(rgba(25, 15, 22, 0.85), rgba(25, 15, 22, 0.85)), url('7 Sem Título_20261108005507.png') !important;
+            border-bottom: 1px solid rgba(255, 183, 202, 0.15);
         }
 
         ::-webkit-scrollbar {
@@ -121,31 +120,42 @@
                     <span class="font-['Comfortaa'] font-bold text-base sm:text-xl text-sakura-900 dark:text-sakura-100 tracking-tight">
                         Casinha do <span class="text-sakura-500">Ayzin</span>
                     </span>
-                    <span class="text-[9px] sm:text-[10px] text-sakura-700 dark:text-sakura-300 font-mono">- mini projetos & diversão -</span>
+                    <span class="text-[9px] sm:text-[10px] text-sakura-700 dark:text-sakura-300 font-mono">- mini projetos & diversao -</span>
                 </div>
             </a>
 
-            <!-- Desktop Menu -->
-            <nav class="hidden md:flex items-center gap-6 font-semibold text-sm text-sakura-900 dark:text-sakura-100">
-                <a href="#inicio" class="hover:text-sakura-500 transition-colors">Início</a>
-                <a href="#projetos" class="hover:text-sakura-500 transition-colors">Meus Projetos</a>
-                <a href="#sobre" class="hover:text-sakura-500 transition-colors">Sobre Mim</a>
-                <a href="#contato" class="px-4 py-2 rounded-full bg-sakura-500 text-white hover:bg-sakura-600 shadow-sm hover:shadow-md transition-all">
+            <!-- Desktop Menu & Theme Switcher -->
+            <div class="hidden md:flex items-center gap-5">
+                <nav class="flex items-center gap-6 font-semibold text-sm text-sakura-900 dark:text-sakura-100">
+                    <a href="#inicio" class="hover:text-sakura-500 transition-colors">Inicio</a>
+                    <a href="#projetos" class="hover:text-sakura-500 transition-colors">Meus Projetos</a>
+                    <a href="#sobre" class="hover:text-sakura-500 transition-colors">Sobre Mim</a>
+                </nav>
+                <!-- Botão de Tema com nome light/dark -->
+                <button type="button" id="theme-toggle" class="px-3.5 py-1.5 rounded-full glass-card text-xs font-bold text-sakura-900 dark:text-sakura-100 hover:bg-white dark:hover:bg-stone-800 transition-all cursor-pointer shadow-sm">
+                    <span id="theme-text">light</span>
+                </button>
+                <a href="#contato" class="px-4 py-2 rounded-full bg-sakura-500 text-white hover:bg-sakura-600 shadow-sm hover:shadow-md transition-all font-semibold text-sm">
                     Contato
                 </a>
-            </nav>
+            </div>
 
-            <!-- Mobile Menu Button -->
-            <button id="mobile-menu-btn" aria-label="Abrir menu" class="md:hidden text-sakura-900 dark:text-sakura-100 hover:text-sakura-500 text-2xl p-2 focus:outline-none cursor-pointer">
-                <i class="fa-solid fa-bars-staggered"></i>
-            </button>
+            <!-- Mobile Menu & Theme Controls -->
+            <div class="flex items-center gap-2 md:hidden">
+                <button type="button" id="theme-toggle-mobile" class="px-3 py-1.5 rounded-full glass-card text-xs font-bold text-sakura-900 dark:text-sakura-100 cursor-pointer shadow-sm">
+                    <span id="theme-text-mobile">light</span>
+                </button>
+                <button id="mobile-menu-btn" aria-label="Abrir menu" class="text-sakura-900 dark:text-sakura-100 hover:text-sakura-500 text-2xl p-2 focus:outline-none cursor-pointer">
+                    <i class="fa-solid fa-bars-staggered"></i>
+                </button>
+            </div>
         </div>
 
         <!-- Mobile Menu Dropdown -->
         <div id="mobile-menu" class="hidden md:hidden glass-card mx-4 my-2 rounded-2xl p-4 space-y-3 font-semibold text-center text-sakura-900 dark:text-sakura-100 shadow-xl border border-sakura-300">
-            <a href="#inicio" class="mobile-link block py-2 border-b border-sakura-200/50 hover:text-sakura-500">Início</a>
-            <a href="#projetos" class="mobile-link block py-2 border-b border-sakura-200/50 hover:text-sakura-500">Meus Projetos</a>
-            <a href="#sobre" class="mobile-link block py-2 border-b border-sakura-200/50 hover:text-sakura-500">Sobre Mim</a>
+            <a href="#inicio" class="mobile-link block py-2 border-b border-sakura-200/50 dark:border-stone-800 hover:text-sakura-500">Inicio</a>
+            <a href="#projetos" class="mobile-link block py-2 border-b border-sakura-200/50 dark:border-stone-800 hover:text-sakura-500">Meus Projetos</a>
+            <a href="#sobre" class="mobile-link block py-2 border-b border-sakura-200/50 dark:border-stone-800 hover:text-sakura-500">Sobre Mim</a>
             <a href="#contato" class="mobile-link block py-2 text-sakura-500 font-bold">Contato</a>
         </div>
     </header>
@@ -157,7 +167,7 @@
         <section id="inicio" class="max-w-6xl mx-auto px-4 sm:px-6 py-10 sm:py-16 md:py-24 flex flex-col md:flex-row items-center gap-8 sm:gap-10">
             <div class="flex-1 space-y-4 sm:space-y-6 text-center md:text-left">
                 <div class="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-white/90 dark:bg-stone-900/80 border border-sakura-300 text-sakura-700 dark:text-sakura-300 text-xs font-semibold shadow-sm">
-                    <span class="animate-bounce">🌸</span> Bem-vindo(a) ao meu cantinho!
+                    <span>🌸</span> Bem-vindo(a) ao meu cantinho!
                 </div>
                 
                 <h1 class="text-2xl sm:text-4xl lg:text-6xl font-['Comfortaa'] font-extrabold text-white drop-shadow-md leading-tight">
@@ -165,7 +175,7 @@
                 </h1>
                 
                 <p class="text-white/95 text-sm sm:text-lg max-w-xl leading-relaxed drop-shadow">
-                    Aqui é a minha casinha na web onde guardo meus experimentos, sites fofos, mini-jogos e coisinhas que fiz simplesmente por <strong class="font-bold text-white">diversão</strong>! Sinta-se em casa. 🍃
+                    Aqui é a minha casinha na web onde guardo meus experimentos, sites fofos, mini-jogos e coisinhas que fiz simplesmente por <strong class="font-bold text-white">diversao</strong>! Sinta-se em casa. 🍃
                 </p>
 
                 <div class="flex flex-wrap items-center justify-center md:justify-start gap-3 sm:gap-4 pt-2 font-semibold text-xs sm:text-sm">
@@ -193,7 +203,7 @@
                     </div>
 
                     <div class="p-3 rounded-2xl bg-white/70 dark:bg-stone-900/60 text-xs text-sakura-900 dark:text-sakura-100 space-y-1 font-medium">
-                        <p>🍰 <span class="font-bold">Status:</span> Criando coisas aleatórias</p>
+                        <p>🍰 <span class="font-bold">Status:</span> Criando coisas aleatorias</p>
                         <p>🍵 <span class="font-bold">Vibe:</span> Sakura, Matcha & CSS</p>
                     </div>
                 </div>
@@ -205,7 +215,7 @@
             <div class="text-center max-w-2xl mx-auto mb-8 sm:mb-10 space-y-2">
                 <span class="text-xs font-mono uppercase tracking-widest text-sakura-200 font-bold drop-shadow">// GALERIA DE SITES</span>
                 <h2 class="text-2xl sm:text-3xl font-['Comfortaa'] font-bold text-white drop-shadow">Sites criados por mim ✨</h2>
-                <p class="text-xs sm:text-sm text-white/90 drop-shadow">Projetos web feitos por pura diversão, aprendizado e criatividade!</p>
+                <p class="text-xs sm:text-sm text-white/90 drop-shadow">Projetos web feitos por pura diversao, aprendizado e criatividade!</p>
             </div>
 
             <!-- Category Filter Buttons -->
@@ -235,7 +245,7 @@
                     <div class="p-4 sm:p-5 flex-1 flex flex-col justify-between space-y-3">
                         <div>
                             <h3 class="text-base sm:text-lg font-['Comfortaa'] font-bold text-sakura-900 dark:text-sakura-100 group-hover:text-sakura-500 transition-colors">Gerador de Kaomoji Neko</h3>
-                            <p class="text-sakura-800/80 dark:text-sakura-200/80 text-xs mt-1.5 line-clamp-2 leading-relaxed">Sitezinho fofo que gera emoticons japoneses aleatórios de gatinhos para copiar com um clique.</p>
+                            <p class="text-sakura-800/80 dark:text-sakura-200/80 text-xs mt-1.5 line-clamp-2 leading-relaxed">Sitezinho fofo que gera emoticons japoneses aleatorios de gatinhos para copiar com um clique.</p>
                         </div>
                         <div class="space-y-3 pt-2">
                             <div class="flex flex-wrap gap-1 font-mono text-[10px] sm:text-[11px]">
@@ -266,12 +276,12 @@
                     <div class="p-4 sm:p-5 flex-1 flex flex-col justify-between space-y-3">
                         <div>
                             <h3 class="text-base sm:text-lg font-['Comfortaa'] font-bold text-sakura-900 dark:text-sakura-100 group-hover:text-sakura-500 transition-colors">Cantinho do Gato Realista 🐈</h3>
-                            <p class="text-sakura-800/80 dark:text-sakura-200/80 text-xs mt-1.5 line-clamp-2 leading-relaxed">Simulador aconchegante de gatinho com animação detalhada em Canvas, brincadeira de laser e ronronar interativo!</p>
+                            <p class="text-sakura-800/80 dark:text-sakura-200/80 text-xs mt-1.5 line-clamp-2 leading-relaxed">Simulador aconchegante de gatinho com animacao detalhada em Canvas, brincadeira de laser e ronronar interativo!</p>
                         </div>
                         <div class="space-y-3 pt-2">
                             <div class="flex flex-wrap gap-1 font-mono text-[10px] sm:text-[11px]">
                                 <span class="px-2 py-0.5 rounded-md bg-sakura-200/60 dark:bg-stone-800 text-sakura-900 dark:text-sakura-100">Canvas Animado</span>
-                                <span class="px-2 py-0.5 rounded-md bg-sakura-200/60 dark:bg-stone-800 text-sakura-900 dark:text-sakura-100">Simulação</span>
+                                <span class="px-2 py-0.5 rounded-md bg-sakura-200/60 dark:bg-stone-800 text-sakura-900 dark:text-sakura-100">Simulacao</span>
                             </div>
                             <div class="flex items-center justify-between pt-2 border-t border-sakura-200/60 dark:border-stone-800 font-semibold text-xs">
                                 <button type="button" onclick="openModal(2)" class="text-sakura-700 dark:text-sakura-300 hover:text-sakura-500 transition-colors flex items-center gap-1 cursor-pointer">
@@ -296,7 +306,7 @@
                     <div class="p-4 sm:p-5 flex-1 flex flex-col justify-between space-y-3">
                         <div>
                             <h3 class="text-base sm:text-lg font-['Comfortaa'] font-bold text-sakura-900 dark:text-sakura-100 group-hover:text-sakura-500 transition-colors">Paleta Sakura Picker</h3>
-                            <p class="text-sakura-800/80 dark:text-sakura-200/80 text-xs mt-1.5 line-clamp-2 leading-relaxed">Ferramenta leve para extrair e gerar combinadores de cores suaves em pastel e estética aesthetic.</p>
+                            <p class="text-sakura-800/80 dark:text-sakura-200/80 text-xs mt-1.5 line-clamp-2 leading-relaxed">Ferramenta leve para extrair e gerar combinadores de cores suaves em pastel e estetica aesthetic.</p>
                         </div>
                         <div class="space-y-3 pt-2">
                             <div class="flex flex-wrap gap-1 font-mono text-[10px] sm:text-[11px]">
@@ -326,7 +336,7 @@
                     <div class="p-4 sm:p-5 flex-1 flex flex-col justify-between space-y-3">
                         <div>
                             <h3 class="text-base sm:text-lg font-['Comfortaa'] font-bold text-sakura-900 dark:text-sakura-100 group-hover:text-sakura-500 transition-colors">Bento Box Notes</h3>
-                            <p class="text-sakura-800/80 dark:text-sakura-200/80 text-xs mt-1.5 line-clamp-2 leading-relaxed">Um app web minimalista no estilo de marmita japonesa para organizar pequenas anotações diárias.</p>
+                            <p class="text-sakura-800/80 dark:text-sakura-200/80 text-xs mt-1.5 line-clamp-2 leading-relaxed">Um app web minimalista no estilo de marmita japonesa para organizar pequenas anotacoes diarias.</p>
                         </div>
                         <div class="space-y-3 pt-2">
                             <div class="flex flex-wrap gap-1 font-mono text-[10px] sm:text-[11px]">
@@ -386,7 +396,7 @@
                     <div class="p-4 sm:p-5 flex-1 flex flex-col justify-between space-y-3">
                         <div>
                             <h3 class="text-base sm:text-lg font-['Comfortaa'] font-bold text-sakura-900 dark:text-sakura-100 group-hover:text-sakura-500 transition-colors">Jogo da Memória Retro 🍡</h3>
-                            <p class="text-sakura-800/80 dark:text-sakura-200/80 text-xs mt-1.5 line-clamp-2 leading-relaxed">Joguinho de cartas interativo para testar a memória com temática pastel e doces japoneses.</p>
+                            <p class="text-sakura-800/80 dark:text-sakura-200/80 text-xs mt-1.5 line-clamp-2 leading-relaxed">Joguinho de cartas interativo para testar a memoria com temática pastel e doces japoneses.</p>
                         </div>
                         <div class="space-y-3 pt-2">
                             <div class="flex flex-wrap gap-1 font-mono text-[10px] sm:text-[11px]">
@@ -415,9 +425,9 @@
                     <div class="inline-block px-3 py-1 rounded-full bg-sakura-200 dark:bg-stone-800 text-sakura-900 dark:text-sakura-100 font-mono text-xs font-semibold">
                         // sobre a casinha
                     </div>
-                    <h2 class="text-2xl sm:text-3xl font-['Comfortaa'] font-bold text-sakura-900 dark:text-sakura-100">Por que criei esse espaço? 🍡</h2>
+                    <h2 class="text-2xl sm:text-3xl font-['Comfortaa'] font-bold text-sakura-900 dark:text-sakura-100">Por que criei esse espaco? 🍡</h2>
                     <p class="text-sakura-900/90 dark:text-sakura-200/90 leading-relaxed text-xs sm:text-base">
-                        Adoro dar vida a ideias malucas na web e explorar novas tecnologias sem a pressão de criar algo engessado. A <strong class="font-bold text-sakura-900 dark:text-sakura-100">Casinha do Ayzin</strong> é o meu laboratório pessoal e baú de memórias digitais, onde reúno cada mini-projeto, página estática e experimento de código que desenvolvi por puro entusiasmo e diversão!
+                        Adoro dar vida a ideias malucas na web e explorar novas tecnologias sem a pressao de criar algo engessado. A <strong class="font-bold text-sakura-900 dark:text-sakura-100">Casinha do Ayzin</strong> é o meu laboratório pessoal e baú de memorias digitais, onde reúno cada mini-projeto, página estática e experimento de código que desenvolvi por puro entusiasmo e diversao!
                     </p>
 
                     <!-- Mini Badges -->
@@ -428,7 +438,7 @@
                         </div>
                         <div class="p-3 sm:p-4 rounded-2xl bg-white/80 dark:bg-stone-900/60 border border-sakura-200 dark:border-stone-800">
                             <span class="text-xl sm:text-2xl block mb-1">🍵</span>
-                            <span class="text-sakura-900 dark:text-sakura-100">Movido a Chá</span>
+                            <span class="text-sakura-900 dark:text-sakura-100">Movido a Cha</span>
                         </div>
                         <div class="p-3 sm:p-4 rounded-2xl bg-white/80 dark:bg-stone-900/60 border border-sakura-200 dark:border-stone-800">
                             <span class="text-xl sm:text-2xl block mb-1">🎀</span>
@@ -448,7 +458,7 @@
             <div class="text-center max-w-xl mx-auto space-y-4 sm:space-y-6">
                 <h2 class="text-2xl sm:text-3xl font-['Comfortaa'] font-bold text-white drop-shadow">Quer dar um oi? 💌</h2>
                 <p class="text-xs sm:text-sm text-white/90 drop-shadow">
-                    Se você gostou de algum site ou quer dar uma sugestão de projeto divertido para eu fazer, me manda uma mensagem!
+                    Se você gostou de algum site ou quer dar uma sugestao de projeto divertido para eu fazer, me manda uma mensagem!
                 </p>
 
                 <div class="flex flex-wrap justify-center gap-3 sm:gap-4 font-semibold text-xs sm:text-sm">
@@ -493,7 +503,7 @@
                 id: 1,
                 title: "Gerador de Kaomoji Neko",
                 image: "flor 1.jpg",
-                desc: "Sitezinho fofo que gera emoticons japoneses aleatórios de gatinhos para copiar com um clique.",
+                desc: "Sitezinho fofo que gera emoticons japoneses aleatorios de gatinhos para copiar com um clique.",
                 tags: ["HTML", "CSS", "JS"],
                 link: "kaomoji.html"
             },
@@ -501,15 +511,15 @@
                 id: 2,
                 title: "Cantinho do Gato Realista 🐈",
                 image: "flor 2.jpg",
-                desc: "Simulador aconchegante de gatinho com animação detalhada em Canvas, brincadeira de laser e ronronar interativo!",
-                tags: ["Canvas Animado", "Simulação"],
+                desc: "Simulador aconchegante de gatinho com animacao detalhada em Canvas, brincadeira de laser e ronronar interativo!",
+                tags: ["Canvas Animado", "Simulacao"],
                 link: "gato.html"
             },
             {
                 id: 3,
                 title: "Paleta Sakura Picker",
                 image: "flor3.jpg",
-                desc: "Ferramenta leve para extrair e gerar combinadores de cores suaves em pastel e estética aesthetic.",
+                desc: "Ferramenta leve para extrair e gerar combinadores de cores suaves em pastel e estetica aesthetic.",
                 tags: ["Web App", "Colors"],
                 link: "sakura-colors.html"
             },
@@ -517,7 +527,7 @@
                 id: 4,
                 title: "Bento Box Notes",
                 image: "flor4.jpg",
-                desc: "Um app web minimalista no estilo de marmita japonesa para organizar pequenas anotações diárias.",
+                desc: "Um app web minimalista no estilo de marmita japonesa para organizar pequenas anotacoes diarias.",
                 tags: ["LocalStorage", "Tailwind"],
                 link: "bento-notes.html"
             },
@@ -533,11 +543,48 @@
                 id: 6,
                 title: "Jogo da Memória Retro 🍡",
                 image: "flor6.jpg",
-                desc: "Joguinho de cartas interativo para testar a memória com temática pastel e doces japoneses.",
+                desc: "Joguinho de cartas interativo para testar a memoria com temática pastel e doces japoneses.",
                 tags: ["Game Loop", "Animations"],
                 link: "memoria.html"
             }
         ];
+
+        // Alternador de Tema (light / dark com localStorage)
+        const themeToggleBtn = document.getElementById('theme-toggle');
+        const themeToggleBtnMobile = document.getElementById('theme-toggle-mobile');
+        const themeText = document.getElementById('theme-text');
+        const themeTextMobile = document.getElementById('theme-text-mobile');
+        const htmlElement = document.documentElement;
+
+        const savedTheme = localStorage.getItem('theme');
+        const systemPrefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+
+        if (savedTheme === 'dark' || (!savedTheme && systemPrefersDark)) {
+            htmlElement.classList.add('dark');
+            if(themeText) themeText.textContent = 'dark';
+            if(themeTextMobile) themeTextMobile.textContent = 'dark';
+        } else {
+            htmlElement.classList.remove('dark');
+            if(themeText) themeText.textContent = 'light';
+            if(themeTextMobile) themeTextMobile.textContent = 'light';
+        }
+
+        function toggleTheme() {
+            if (htmlElement.classList.contains('dark')) {
+                htmlElement.classList.remove('dark');
+                localStorage.setItem('theme', 'light');
+                if(themeText) themeText.textContent = 'light';
+                if(themeTextMobile) themeTextMobile.textContent = 'light';
+            } else {
+                htmlElement.classList.add('dark');
+                localStorage.setItem('theme', 'dark');
+                if(themeText) themeText.textContent = 'dark';
+                if(themeTextMobile) themeTextMobile.textContent = 'dark';
+            }
+        }
+
+        if(themeToggleBtn) themeToggleBtn.addEventListener('click', toggleTheme);
+        if(themeToggleBtnMobile) themeToggleBtnMobile.addEventListener('click', toggleTheme);
 
         // Mobile Menu Toggle
         const mobileBtn = document.getElementById('mobile-menu-btn');
