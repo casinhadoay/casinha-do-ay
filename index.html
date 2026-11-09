@@ -23,7 +23,6 @@
                             800: '#a5173e',
                             900: '#8b183a',
                             card: 'rgba(255, 255, 255, 0.88)',
-                            cardDark: 'rgba(35, 25, 30, 0.65)'
                         }
                     },
                     fontFamily: {
@@ -41,9 +40,10 @@
     <link href="https://fonts.googleapis.com/css2?family=Comfortaa:wght@400;600;700&family=Quicksand:wght@400;500;600;700&display=swap" rel="stylesheet">
 
     <style>
+        /* Modo Claro (Padrão) */
         body {
             font-family: 'Quicksand', sans-serif;
-            background: linear-gradient(rgba(0, 0, 0, 0.35), rgba(0, 0, 0, 0.35)), url('download.gif');
+            background-image: linear-gradient(rgba(0, 0, 0, 0.35), rgba(0, 0, 0, 0.35)), url('download.gif');
             background-size: cover;
             background-position: center;
             background-attachment: fixed;
@@ -51,6 +51,7 @@
             color: #4a343a;
             overflow-x: hidden;
             position: relative;
+            transition: background 0.5s ease, color 0.5s ease;
         }
 
         .glass-nav {
@@ -68,6 +69,27 @@
             -webkit-backdrop-filter: blur(12px);
             border: 1px solid rgba(255, 183, 202, 0.4);
             box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.15);
+            transition: background 0.5s ease, border 0.5s ease;
+        }
+
+        /* Modo Escuro Automático baseado no Sistema (Usa cozy-night.gif) */
+        @media (prefers-color-scheme: dark) {
+            body {
+                background-image: linear-gradient(rgba(15, 10, 20, 0.7), rgba(15, 10, 20, 0.7)), url('cozy-night.gif');
+                color: #fce7f0;
+            }
+
+            .glass-card {
+                background: rgba(30, 20, 28, 0.80) !important;
+                border: 1px solid rgba(255, 183, 202, 0.2) !important;
+                box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.3) !important;
+                color: #fce7f0 !important;
+            }
+
+            .glass-nav {
+                background: linear-gradient(rgba(25, 15, 22, 0.85), rgba(25, 15, 22, 0.85)), url('7 Sem Título_20261108005507.png') !important;
+                border-bottom: 1px solid rgba(255, 183, 202, 0.15);
+            }
         }
 
         ::-webkit-scrollbar {
@@ -96,15 +118,15 @@
                     🌸
                 </div>
                 <div class="flex flex-col">
-                    <span class="font-['Comfortaa'] font-bold text-base sm:text-xl text-sakura-900 tracking-tight">
+                    <span class="font-['Comfortaa'] font-bold text-base sm:text-xl text-sakura-900 dark:text-sakura-100 tracking-tight">
                         Casinha do <span class="text-sakura-500">Ayzin</span>
                     </span>
-                    <span class="text-[9px] sm:text-[10px] text-sakura-700 font-mono">- mini projetos & diversão -</span>
+                    <span class="text-[9px] sm:text-[10px] text-sakura-700 dark:text-sakura-300 font-mono">- mini projetos & diversão -</span>
                 </div>
             </a>
 
             <!-- Desktop Menu -->
-            <nav class="hidden md:flex items-center gap-6 font-semibold text-sm text-sakura-900">
+            <nav class="hidden md:flex items-center gap-6 font-semibold text-sm text-sakura-900 dark:text-sakura-100">
                 <a href="#inicio" class="hover:text-sakura-500 transition-colors">Início</a>
                 <a href="#projetos" class="hover:text-sakura-500 transition-colors">Meus Projetos</a>
                 <a href="#sobre" class="hover:text-sakura-500 transition-colors">Sobre Mim</a>
@@ -114,13 +136,13 @@
             </nav>
 
             <!-- Mobile Menu Button -->
-            <button id="mobile-menu-btn" aria-label="Abrir menu" class="md:hidden text-sakura-900 hover:text-sakura-500 text-2xl p-2 focus:outline-none cursor-pointer">
+            <button id="mobile-menu-btn" aria-label="Abrir menu" class="md:hidden text-sakura-900 dark:text-sakura-100 hover:text-sakura-500 text-2xl p-2 focus:outline-none cursor-pointer">
                 <i class="fa-solid fa-bars-staggered"></i>
             </button>
         </div>
 
         <!-- Mobile Menu Dropdown -->
-        <div id="mobile-menu" class="hidden md:hidden glass-card mx-4 my-2 rounded-2xl p-4 space-y-3 font-semibold text-center text-sakura-900 shadow-xl border border-sakura-300">
+        <div id="mobile-menu" class="hidden md:hidden glass-card mx-4 my-2 rounded-2xl p-4 space-y-3 font-semibold text-center text-sakura-900 dark:text-sakura-100 shadow-xl border border-sakura-300">
             <a href="#inicio" class="mobile-link block py-2 border-b border-sakura-200/50 hover:text-sakura-500">Início</a>
             <a href="#projetos" class="mobile-link block py-2 border-b border-sakura-200/50 hover:text-sakura-500">Meus Projetos</a>
             <a href="#sobre" class="mobile-link block py-2 border-b border-sakura-200/50 hover:text-sakura-500">Sobre Mim</a>
@@ -134,7 +156,7 @@
         <!-- Hero Section -->
         <section id="inicio" class="max-w-6xl mx-auto px-4 sm:px-6 py-10 sm:py-16 md:py-24 flex flex-col md:flex-row items-center gap-8 sm:gap-10">
             <div class="flex-1 space-y-4 sm:space-y-6 text-center md:text-left">
-                <div class="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-white/90 border border-sakura-300 text-sakura-700 text-xs font-semibold shadow-sm">
+                <div class="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-white/90 dark:bg-stone-900/80 border border-sakura-300 text-sakura-700 dark:text-sakura-300 text-xs font-semibold shadow-sm">
                     <span class="animate-bounce">🌸</span> Bem-vindo(a) ao meu cantinho!
                 </div>
                 
@@ -150,7 +172,7 @@
                     <a href="#projetos" class="px-5 py-3 rounded-2xl bg-sakura-500 text-white shadow-lg hover:bg-sakura-600 hover:shadow-sakura-300/50 hover:-translate-y-0.5 transition-all flex items-center gap-2">
                         <i class="fa-solid fa-gamepad text-white"></i> Explorar Projetos
                     </a>
-                    <a href="amigos.html" class="px-5 py-3 rounded-2xl glass-card text-sakura-900 hover:bg-white transition-all flex items-center gap-2">
+                    <a href="amigos.html" class="px-5 py-3 rounded-2xl glass-card text-sakura-900 dark:text-sakura-100 hover:bg-white dark:hover:bg-stone-800 transition-all flex items-center gap-2">
                         <span>Cantinho dos Amigos</span> 🤝
                     </a>
                 </div>
@@ -159,18 +181,18 @@
             <div class="w-full md:w-5/12 max-w-xs sm:max-w-sm">
                 <div class="glass-card p-5 sm:p-6 rounded-3xl text-center space-y-4 relative overflow-hidden group">
                     <div class="w-28 h-28 sm:w-32 sm:h-32 mx-auto rounded-full bg-gradient-to-tr from-sakura-300 to-sakura-200 p-1 shadow-inner relative">
-                        <div class="w-full h-full rounded-full bg-white flex items-center justify-center text-4xl sm:text-5xl">
-                         ⋆˚‎𖹭｡ּ
+                        <div class="w-full h-full rounded-full bg-white dark:bg-stone-900 flex items-center justify-center text-4xl sm:text-5xl">
+                            🐱
                         </div>
-                        <span class="absolute bottom-1 right-1 bg-green-400 border-2 border-white w-4 h-4 sm:w-5 sm:h-5 rounded-full" title="Online codando"></span>
+                        <span class="absolute bottom-1 right-1 bg-green-400 border-2 border-white dark:border-stone-900 w-4 h-4 sm:w-5 sm:h-5 rounded-full" title="Online codando"></span>
                     </div>
 
                     <div>
-                        <h3 class="font-['Comfortaa'] font-bold text-lg sm:text-xl text-sakura-900">Ayzin</h3>
-                        <p class="text-xs text-sakura-700 font-mono">@ayzin_dev</p>
+                        <h3 class="font-['Comfortaa'] font-bold text-lg sm:text-xl text-sakura-900 dark:text-sakura-100">Ayzin</h3>
+                        <p class="text-xs text-sakura-700 dark:text-sakura-300 font-mono">@ayzin_dev</p>
                     </div>
 
-                    <div class="p-3 rounded-2xl bg-white/70 text-xs text-sakura-900 space-y-1 font-medium">
+                    <div class="p-3 rounded-2xl bg-white/70 dark:bg-stone-900/60 text-xs text-sakura-900 dark:text-sakura-100 space-y-1 font-medium">
                         <p>🍰 <span class="font-bold">Status:</span> Criando coisas aleatórias</p>
                         <p>🍵 <span class="font-bold">Vibe:</span> Sakura, Matcha & CSS</p>
                     </div>
@@ -191,10 +213,10 @@
                 <button data-filter="all" class="filter-btn px-3.5 py-2 rounded-full bg-sakura-500 text-white shadow-sm transition-all cursor-pointer">
                     🌸 Todos os Sites
                 </button>
-                <button data-filter="hobby" class="filter-btn px-3.5 py-2 rounded-full glass-card text-sakura-900 hover:bg-white transition-all cursor-pointer">
+                <button data-filter="hobby" class="filter-btn px-3.5 py-2 rounded-full glass-card text-sakura-900 dark:text-sakura-100 hover:bg-white dark:hover:bg-stone-800 transition-all cursor-pointer">
                     🎨 Hobbies & Mini-Jogos
                 </button>
-                <button data-filter="webapps" class="filter-btn px-3.5 py-2 rounded-full glass-card text-sakura-900 hover:bg-white transition-all cursor-pointer">
+                <button data-filter="webapps" class="filter-btn px-3.5 py-2 rounded-full glass-card text-sakura-900 dark:text-sakura-100 hover:bg-white dark:hover:bg-stone-800 transition-all cursor-pointer">
                     💻 Web Apps & Ferramentas
                 </button>
             </div>
@@ -212,17 +234,17 @@
                     </div>
                     <div class="p-4 sm:p-5 flex-1 flex flex-col justify-between space-y-3">
                         <div>
-                            <h3 class="text-base sm:text-lg font-['Comfortaa'] font-bold text-sakura-900 group-hover:text-sakura-500 transition-colors">Gerador de Kaomoji Neko</h3>
-                            <p class="text-sakura-800/80 text-xs mt-1.5 line-clamp-2 leading-relaxed">Sitezinho fofo que gera emoticons japoneses aleatórios de gatinhos para copiar com um clique.</p>
+                            <h3 class="text-base sm:text-lg font-['Comfortaa'] font-bold text-sakura-900 dark:text-sakura-100 group-hover:text-sakura-500 transition-colors">Gerador de Kaomoji Neko</h3>
+                            <p class="text-sakura-800/80 dark:text-sakura-200/80 text-xs mt-1.5 line-clamp-2 leading-relaxed">Sitezinho fofo que gera emoticons japoneses aleatórios de gatinhos para copiar com um clique.</p>
                         </div>
                         <div class="space-y-3 pt-2">
                             <div class="flex flex-wrap gap-1 font-mono text-[10px] sm:text-[11px]">
-                                <span class="px-2 py-0.5 rounded-md bg-sakura-200/60 text-sakura-900">HTML</span>
-                                <span class="px-2 py-0.5 rounded-md bg-sakura-200/60 text-sakura-900">CSS</span>
-                                <span class="px-2 py-0.5 rounded-md bg-sakura-200/60 text-sakura-900">JS</span>
+                                <span class="px-2 py-0.5 rounded-md bg-sakura-200/60 dark:bg-stone-800 text-sakura-900 dark:text-sakura-100">HTML</span>
+                                <span class="px-2 py-0.5 rounded-md bg-sakura-200/60 dark:bg-stone-800 text-sakura-900 dark:text-sakura-100">CSS</span>
+                                <span class="px-2 py-0.5 rounded-md bg-sakura-200/60 dark:bg-stone-800 text-sakura-900 dark:text-sakura-100">JS</span>
                             </div>
-                            <div class="flex items-center justify-between pt-2 border-t border-sakura-200/60 font-semibold text-xs">
-                                <button type="button" onclick="openModal(1)" class="text-sakura-700 hover:text-sakura-500 transition-colors flex items-center gap-1 cursor-pointer">
+                            <div class="flex items-center justify-between pt-2 border-t border-sakura-200/60 dark:border-stone-800 font-semibold text-xs">
+                                <button type="button" onclick="openModal(1)" class="text-sakura-700 dark:text-sakura-300 hover:text-sakura-500 transition-colors flex items-center gap-1 cursor-pointer">
                                     Detalhes
                                 </button>
                                 <a href="kaomoji.html" class="text-sakura-500 hover:underline flex items-center gap-1 font-bold">
@@ -243,16 +265,16 @@
                     </div>
                     <div class="p-4 sm:p-5 flex-1 flex flex-col justify-between space-y-3">
                         <div>
-                            <h3 class="text-base sm:text-lg font-['Comfortaa'] font-bold text-sakura-900 group-hover:text-sakura-500 transition-colors">Cantinho do Gato Realista 🐈</h3>
-                            <p class="text-sakura-800/80 text-xs mt-1.5 line-clamp-2 leading-relaxed">Simulador aconchegante de gatinho com animação detalhada em Canvas, brincadeira de laser e ronronar interativo!</p>
+                            <h3 class="text-base sm:text-lg font-['Comfortaa'] font-bold text-sakura-900 dark:text-sakura-100 group-hover:text-sakura-500 transition-colors">Cantinho do Gato Realista 🐈</h3>
+                            <p class="text-sakura-800/80 dark:text-sakura-200/80 text-xs mt-1.5 line-clamp-2 leading-relaxed">Simulador aconchegante de gatinho com animação detalhada em Canvas, brincadeira de laser e ronronar interativo!</p>
                         </div>
                         <div class="space-y-3 pt-2">
                             <div class="flex flex-wrap gap-1 font-mono text-[10px] sm:text-[11px]">
-                                <span class="px-2 py-0.5 rounded-md bg-sakura-200/60 text-sakura-900">Canvas Animado</span>
-                                <span class="px-2 py-0.5 rounded-md bg-sakura-200/60 text-sakura-900">Simulação</span>
+                                <span class="px-2 py-0.5 rounded-md bg-sakura-200/60 dark:bg-stone-800 text-sakura-900 dark:text-sakura-100">Canvas Animado</span>
+                                <span class="px-2 py-0.5 rounded-md bg-sakura-200/60 dark:bg-stone-800 text-sakura-900 dark:text-sakura-100">Simulação</span>
                             </div>
-                            <div class="flex items-center justify-between pt-2 border-t border-sakura-200/60 font-semibold text-xs">
-                                <button type="button" onclick="openModal(2)" class="text-sakura-700 hover:text-sakura-500 transition-colors flex items-center gap-1 cursor-pointer">
+                            <div class="flex items-center justify-between pt-2 border-t border-sakura-200/60 dark:border-stone-800 font-semibold text-xs">
+                                <button type="button" onclick="openModal(2)" class="text-sakura-700 dark:text-sakura-300 hover:text-sakura-500 transition-colors flex items-center gap-1 cursor-pointer">
                                     Detalhes
                                 </button>
                                 <a href="gato.html" class="px-3.5 py-1.5 rounded-full bg-sakura-500 text-white font-bold hover:bg-sakura-600 transition-all flex items-center gap-1 shadow-sm">
@@ -273,16 +295,16 @@
                     </div>
                     <div class="p-4 sm:p-5 flex-1 flex flex-col justify-between space-y-3">
                         <div>
-                            <h3 class="text-base sm:text-lg font-['Comfortaa'] font-bold text-sakura-900 group-hover:text-sakura-500 transition-colors">Paleta Sakura Picker</h3>
-                            <p class="text-sakura-800/80 text-xs mt-1.5 line-clamp-2 leading-relaxed">Ferramenta leve para extrair e gerar combinadores de cores suaves em pastel e estética aesthetic.</p>
+                            <h3 class="text-base sm:text-lg font-['Comfortaa'] font-bold text-sakura-900 dark:text-sakura-100 group-hover:text-sakura-500 transition-colors">Paleta Sakura Picker</h3>
+                            <p class="text-sakura-800/80 dark:text-sakura-200/80 text-xs mt-1.5 line-clamp-2 leading-relaxed">Ferramenta leve para extrair e gerar combinadores de cores suaves em pastel e estética aesthetic.</p>
                         </div>
                         <div class="space-y-3 pt-2">
                             <div class="flex flex-wrap gap-1 font-mono text-[10px] sm:text-[11px]">
-                                <span class="px-2 py-0.5 rounded-md bg-sakura-200/60 text-sakura-900">Web App</span>
-                                <span class="px-2 py-0.5 rounded-md bg-sakura-200/60 text-sakura-900">Colors</span>
+                                <span class="px-2 py-0.5 rounded-md bg-sakura-200/60 dark:bg-stone-800 text-sakura-900 dark:text-sakura-100">Web App</span>
+                                <span class="px-2 py-0.5 rounded-md bg-sakura-200/60 dark:bg-stone-800 text-sakura-900 dark:text-sakura-100">Colors</span>
                             </div>
-                            <div class="flex items-center justify-between pt-2 border-t border-sakura-200/60 font-semibold text-xs">
-                                <button type="button" onclick="openModal(3)" class="text-sakura-700 hover:text-sakura-500 transition-colors flex items-center gap-1 cursor-pointer">
+                            <div class="flex items-center justify-between pt-2 border-t border-sakura-200/60 dark:border-stone-800 font-semibold text-xs">
+                                <button type="button" onclick="openModal(3)" class="text-sakura-700 dark:text-sakura-300 hover:text-sakura-500 transition-colors flex items-center gap-1 cursor-pointer">
                                     Detalhes
                                 </button>
                                 <a href="sakura-colors.html" class="text-sakura-500 hover:underline flex items-center gap-1 font-bold">
@@ -303,16 +325,16 @@
                     </div>
                     <div class="p-4 sm:p-5 flex-1 flex flex-col justify-between space-y-3">
                         <div>
-                            <h3 class="text-base sm:text-lg font-['Comfortaa'] font-bold text-sakura-900 group-hover:text-sakura-500 transition-colors">Bento Box Notes</h3>
-                            <p class="text-sakura-800/80 text-xs mt-1.5 line-clamp-2 leading-relaxed">Um app web minimalista no estilo de marmita japonesa para organizar pequenas anotações diárias.</p>
+                            <h3 class="text-base sm:text-lg font-['Comfortaa'] font-bold text-sakura-900 dark:text-sakura-100 group-hover:text-sakura-500 transition-colors">Bento Box Notes</h3>
+                            <p class="text-sakura-800/80 dark:text-sakura-200/80 text-xs mt-1.5 line-clamp-2 leading-relaxed">Um app web minimalista no estilo de marmita japonesa para organizar pequenas anotações diárias.</p>
                         </div>
                         <div class="space-y-3 pt-2">
                             <div class="flex flex-wrap gap-1 font-mono text-[10px] sm:text-[11px]">
-                                <span class="px-2 py-0.5 rounded-md bg-sakura-200/60 text-sakura-900">LocalStorage</span>
-                                <span class="px-2 py-0.5 rounded-md bg-sakura-200/60 text-sakura-900">Tailwind</span>
+                                <span class="px-2 py-0.5 rounded-md bg-sakura-200/60 dark:bg-stone-800 text-sakura-900 dark:text-sakura-100">LocalStorage</span>
+                                <span class="px-2 py-0.5 rounded-md bg-sakura-200/60 dark:bg-stone-800 text-sakura-900 dark:text-sakura-100">Tailwind</span>
                             </div>
-                            <div class="flex items-center justify-between pt-2 border-t border-sakura-200/60 font-semibold text-xs">
-                                <button type="button" onclick="openModal(4)" class="text-sakura-700 hover:text-sakura-500 transition-colors flex items-center gap-1 cursor-pointer">
+                            <div class="flex items-center justify-between pt-2 border-t border-sakura-200/60 dark:border-stone-800 font-semibold text-xs">
+                                <button type="button" onclick="openModal(4)" class="text-sakura-700 dark:text-sakura-300 hover:text-sakura-500 transition-colors flex items-center gap-1 cursor-pointer">
                                     Detalhes
                                 </button>
                                 <a href="bento-notes.html" class="text-sakura-500 hover:underline flex items-center gap-1 font-bold">
@@ -333,16 +355,16 @@
                     </div>
                     <div class="p-4 sm:p-5 flex-1 flex flex-col justify-between space-y-3">
                         <div>
-                            <h3 class="text-base sm:text-lg font-['Comfortaa'] font-bold text-sakura-900 group-hover:text-sakura-500 transition-colors">Sites feito para meus amigos</h3>
-                            <p class="text-sakura-800/80 text-xs mt-1.5 line-clamp-2 leading-relaxed">sites feito para meus amigos</p>
+                            <h3 class="text-base sm:text-lg font-['Comfortaa'] font-bold text-sakura-900 dark:text-sakura-100 group-hover:text-sakura-500 transition-colors">Sites feito para meus amigos</h3>
+                            <p class="text-sakura-800/80 dark:text-sakura-200/80 text-xs mt-1.5 line-clamp-2 leading-relaxed">sites feito para meus amigos</p>
                         </div>
                         <div class="space-y-3 pt-2">
                             <div class="flex flex-wrap gap-1 font-mono text-[10px] sm:text-[11px]">
-                                <span class="px-2 py-0.5 rounded-md bg-sakura-200/60 text-sakura-900">Amigos</span>
-                                <span class="px-2 py-0.5 rounded-md bg-sakura-200/60 text-sakura-900">Lojas</span>
+                                <span class="px-2 py-0.5 rounded-md bg-sakura-200/60 dark:bg-stone-800 text-sakura-900 dark:text-sakura-100">Amigos</span>
+                                <span class="px-2 py-0.5 rounded-md bg-sakura-200/60 dark:bg-stone-800 text-sakura-900 dark:text-sakura-100">Lojas</span>
                             </div>
-                            <div class="flex items-center justify-between pt-2 border-t border-sakura-200/60 font-semibold text-xs">
-                                <button type="button" onclick="openModal(5)" class="text-sakura-700 hover:text-sakura-500 transition-colors flex items-center gap-1 cursor-pointer">
+                            <div class="flex items-center justify-between pt-2 border-t border-sakura-200/60 dark:border-stone-800 font-semibold text-xs">
+                                <button type="button" onclick="openModal(5)" class="text-sakura-700 dark:text-sakura-300 hover:text-sakura-500 transition-colors flex items-center gap-1 cursor-pointer">
                                     Detalhes
                                 </button>
                                 <a href="amigos.html" class="text-sakura-500 hover:underline flex items-center gap-1 font-bold">
@@ -353,7 +375,7 @@
                     </div>
                 </div>
 
-                <!-- Card 6: Jogo da Memória Retro (ID 6) -->
+                <!-- Card 6: Jogo da Memória Retro -->
                 <div class="project-card glass-card rounded-3xl overflow-hidden flex flex-col group hover:-translate-y-1.5 transition-all duration-300" data-category="hobby">
                     <div class="relative overflow-hidden h-40 sm:h-44 bg-sakura-100">
                         <img src="flor6.jpg" alt="Jogo da Memória Retro" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500">
@@ -363,16 +385,16 @@
                     </div>
                     <div class="p-4 sm:p-5 flex-1 flex flex-col justify-between space-y-3">
                         <div>
-                            <h3 class="text-base sm:text-lg font-['Comfortaa'] font-bold text-sakura-900 group-hover:text-sakura-500 transition-colors">Jogo da Memória Retro 🍡</h3>
-                            <p class="text-sakura-800/80 text-xs mt-1.5 line-clamp-2 leading-relaxed">Joguinho de cartas interativo para testar a memória com temática pastel e doces japoneses.</p>
+                            <h3 class="text-base sm:text-lg font-['Comfortaa'] font-bold text-sakura-900 dark:text-sakura-100 group-hover:text-sakura-500 transition-colors">Jogo da Memória Retro 🍡</h3>
+                            <p class="text-sakura-800/80 dark:text-sakura-200/80 text-xs mt-1.5 line-clamp-2 leading-relaxed">Joguinho de cartas interativo para testar a memória com temática pastel e doces japoneses.</p>
                         </div>
                         <div class="space-y-3 pt-2">
                             <div class="flex flex-wrap gap-1 font-mono text-[10px] sm:text-[11px]">
-                                <span class="px-2 py-0.5 rounded-md bg-sakura-200/60 text-sakura-900">Game Loop</span>
-                                <span class="px-2 py-0.5 rounded-md bg-sakura-200/60 text-sakura-900">Animations</span>
+                                <span class="px-2 py-0.5 rounded-md bg-sakura-200/60 dark:bg-stone-800 text-sakura-900 dark:text-sakura-100">Game Loop</span>
+                                <span class="px-2 py-0.5 rounded-md bg-sakura-200/60 dark:bg-stone-800 text-sakura-900 dark:text-sakura-100">Animations</span>
                             </div>
-                            <div class="flex items-center justify-between pt-2 border-t border-sakura-200/60 font-semibold text-xs">
-                                <button type="button" onclick="openModal(6)" class="text-sakura-700 hover:text-sakura-500 transition-colors flex items-center gap-1 cursor-pointer">
+                            <div class="flex items-center justify-between pt-2 border-t border-sakura-200/60 dark:border-stone-800 font-semibold text-xs">
+                                <button type="button" onclick="openModal(6)" class="text-sakura-700 dark:text-sakura-300 hover:text-sakura-500 transition-colors flex items-center gap-1 cursor-pointer">
                                     Detalhes
                                 </button>
                                 <a href="memoria.html" class="px-3.5 py-1.5 rounded-full bg-sakura-500 text-white font-bold hover:bg-sakura-600 transition-all flex items-center gap-1 shadow-sm">
@@ -390,31 +412,31 @@
         <section id="sobre" class="max-w-6xl mx-auto px-4 sm:px-6 py-12 sm:py-16">
             <div class="glass-card rounded-3xl p-6 sm:p-12 relative overflow-hidden">
                 <div class="max-w-3xl mx-auto space-y-4 sm:space-y-6">
-                    <div class="inline-block px-3 py-1 rounded-full bg-sakura-200 text-sakura-900 font-mono text-xs font-semibold">
+                    <div class="inline-block px-3 py-1 rounded-full bg-sakura-200 dark:bg-stone-800 text-sakura-900 dark:text-sakura-100 font-mono text-xs font-semibold">
                         // sobre a casinha
                     </div>
-                    <h2 class="text-2xl sm:text-3xl font-['Comfortaa'] font-bold text-sakura-900">Por que criei esse espaço? 🍡</h2>
-                    <p class="text-sakura-900/90 leading-relaxed text-xs sm:text-base">
-                        Adoro dar vida a ideias malucas na web e explorar novas tecnologias sem a pressão de criar algo engessado. A <strong class="font-bold text-sakura-900">Casinha do Ayzin</strong> é o meu laboratório pessoal e baú de memórias digitais, onde reúno cada mini-projeto, página estática e experimento de código que desenvolvi por puro entusiasmo e diversão!
+                    <h2 class="text-2xl sm:text-3xl font-['Comfortaa'] font-bold text-sakura-900 dark:text-sakura-100">Por que criei esse espaço? 🍡</h2>
+                    <p class="text-sakura-900/90 dark:text-sakura-200/90 leading-relaxed text-xs sm:text-base">
+                        Adoro dar vida a ideias malucas na web e explorar novas tecnologias sem a pressão de criar algo engessado. A <strong class="font-bold text-sakura-900 dark:text-sakura-100">Casinha do Ayzin</strong> é o meu laboratório pessoal e baú de memórias digitais, onde reúno cada mini-projeto, página estática e experimento de código que desenvolvi por puro entusiasmo e diversão!
                     </p>
 
                     <!-- Mini Badges -->
                     <div class="grid grid-cols-2 sm:grid-cols-4 gap-3 sm:gap-4 pt-4 text-center font-semibold text-xs">
-                        <div class="p-3 sm:p-4 rounded-2xl bg-white/80 border border-sakura-200">
+                        <div class="p-3 sm:p-4 rounded-2xl bg-white/80 dark:bg-stone-900/60 border border-sakura-200 dark:border-stone-800">
                             <span class="text-xl sm:text-2xl block mb-1">⚡</span>
-                            <span class="text-sakura-900">100% HTML & CSS</span>
+                            <span class="text-sakura-900 dark:text-sakura-100">100% HTML & CSS</span>
                         </div>
-                        <div class="p-3 sm:p-4 rounded-2xl bg-white/80 border border-sakura-200">
+                        <div class="p-3 sm:p-4 rounded-2xl bg-white/80 dark:bg-stone-900/60 border border-sakura-200 dark:border-stone-800">
                             <span class="text-xl sm:text-2xl block mb-1">🍵</span>
-                            <span class="text-sakura-900">Movido a Chá</span>
+                            <span class="text-sakura-900 dark:text-sakura-100">Movido a Chá</span>
                         </div>
-                        <div class="p-3 sm:p-4 rounded-2xl bg-white/80 border border-sakura-200">
+                        <div class="p-3 sm:p-4 rounded-2xl bg-white/80 dark:bg-stone-900/60 border border-sakura-200 dark:border-stone-800">
                             <span class="text-xl sm:text-2xl block mb-1">🎀</span>
-                            <span class="text-sakura-900">Design Fofo</span>
+                            <span class="text-sakura-900 dark:text-sakura-100">Design Fofo</span>
                         </div>
-                        <div class="p-3 sm:p-4 rounded-2xl bg-white/80 border border-sakura-200">
+                        <div class="p-3 sm:p-4 rounded-2xl bg-white/80 dark:bg-stone-900/60 border border-sakura-200 dark:border-stone-800">
                             <span class="text-xl sm:text-2xl block mb-1">🚀</span>
-                            <span class="text-sakura-900">GitHub Pages</span>
+                            <span class="text-sakura-900 dark:text-sakura-100">GitHub Pages</span>
                         </div>
                     </div>
                 </div>
@@ -430,7 +452,7 @@
                 </p>
 
                 <div class="flex flex-wrap justify-center gap-3 sm:gap-4 font-semibold text-xs sm:text-sm">
-                    <a href="https://www.instagram.com/ay.sousz?psln=MWp3bGJ1N2tsa2s1aA==" target="_blank" class="px-5 py-3 rounded-2xl glass-card text-sakura-900 hover:bg-white transition-all flex items-center gap-2">
+                    <a href="https://www.instagram.com/ay.sousz?psln=MWp3bGJ1N2tsa2s1aA==" target="_blank" class="px-5 py-3 rounded-2xl glass-card text-sakura-900 dark:text-sakura-100 hover:bg-white dark:hover:bg-stone-800 transition-all flex items-center gap-2">
                         <i class="fa-brands fa-instagram text-base sm:text-lg text-sakura-600"></i> Instagram
                     </a>
                     <a href="https://discord.gg/jBBfqCfr" target="_blank" class="px-5 py-3 rounded-2xl bg-sakura-500 text-white hover:bg-sakura-600 transition-all flex items-center gap-2 shadow-md">
@@ -443,15 +465,15 @@
 
     <!-- Modal de Detalhes do Projeto -->
     <div id="project-modal" class="fixed inset-0 z-50 bg-sakura-900/60 backdrop-blur-sm hidden items-center justify-center p-4">
-        <div class="glass-card bg-white/95 border border-sakura-300 rounded-3xl max-w-lg w-full p-5 sm:p-6 relative space-y-3 sm:space-y-4 shadow-2xl overflow-y-auto max-h-[90vh]">
-            <button type="button" id="close-modal" aria-label="Fechar" class="absolute top-4 right-4 text-sakura-600 hover:text-sakura-900 text-lg w-8 h-8 rounded-full bg-sakura-100 flex items-center justify-center cursor-pointer">
+        <div class="glass-card bg-white/95 dark:bg-stone-900 border border-sakura-300 dark:border-stone-800 rounded-3xl max-w-lg w-full p-5 sm:p-6 relative space-y-3 sm:space-y-4 shadow-2xl overflow-y-auto max-h-[90vh]">
+            <button type="button" id="close-modal" aria-label="Fechar" class="absolute top-4 right-4 text-sakura-600 dark:text-sakura-300 hover:text-sakura-900 text-lg w-8 h-8 rounded-full bg-sakura-100 dark:bg-stone-800 flex items-center justify-center cursor-pointer">
                 <i class="fa-solid fa-xmark"></i>
             </button>
-            <h3 id="modal-title" class="text-xl sm:text-2xl font-['Comfortaa'] font-bold text-sakura-900 pr-8"></h3>
-            <img id="modal-image" class="w-full h-40 sm:h-48 object-cover rounded-2xl border border-sakura-200" src="" alt="">
-            <p id="modal-desc" class="text-sakura-800 text-xs sm:text-sm leading-relaxed"></p>
+            <h3 id="modal-title" class="text-xl sm:text-2xl font-['Comfortaa'] font-bold text-sakura-900 dark:text-sakura-100 pr-8"></h3>
+            <img id="modal-image" class="w-full h-40 sm:h-48 object-cover rounded-2xl border border-sakura-200 dark:border-stone-800" src="" alt="">
+            <p id="modal-desc" class="text-sakura-800 dark:text-sakura-200 text-xs sm:text-sm leading-relaxed"></p>
             <div id="modal-tags" class="flex flex-wrap gap-2 font-mono text-[10px] sm:text-xs"></div>
-            <div class="flex justify-end gap-3 pt-3 border-t border-sakura-200 font-semibold text-xs sm:text-sm">
+            <div class="flex justify-end gap-3 pt-3 border-t border-sakura-200 dark:border-stone-800 font-semibold text-xs sm:text-sm">
                 <a id="modal-live-link" href="#" class="px-4 py-2.5 rounded-xl bg-sakura-500 text-white hover:bg-sakura-600 transition-all flex items-center gap-2 shadow">
                     <i class="fa-solid fa-arrow-up-right-from-square text-xs"></i> Abrir Projeto
                 </a>
@@ -545,7 +567,7 @@
             tagsContainer.innerHTML = '';
             project.tags.forEach(t => {
                 const tagSpan = document.createElement('span');
-                tagSpan.className = 'px-2 py-0.5 rounded-md bg-sakura-200 text-sakura-900 font-semibold';
+                tagSpan.className = 'px-2 py-0.5 rounded-md bg-sakura-200 dark:bg-stone-800 text-sakura-900 dark:text-sakura-100 font-semibold';
                 tagSpan.textContent = t;
                 tagsContainer.appendChild(tagSpan);
             });
@@ -580,7 +602,7 @@
         filterBtns.forEach(btn => {
             btn.addEventListener('click', () => {
                 filterBtns.forEach(b => {
-                    b.className = 'filter-btn px-3.5 py-2 rounded-full glass-card text-sakura-900 hover:bg-white transition-all cursor-pointer';
+                    b.className = 'filter-btn px-3.5 py-2 rounded-full glass-card text-sakura-900 dark:text-sakura-100 hover:bg-white dark:hover:bg-stone-800 transition-all cursor-pointer';
                 });
                 btn.className = 'filter-btn px-3.5 py-2 rounded-full bg-sakura-500 text-white shadow-sm transition-all cursor-pointer';
 
